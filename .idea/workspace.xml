@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/environments/road-foo/road_foo/envs/gridworld.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environments/road-foo/road_foo/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/road-foo/road_foo/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environments/road-foo/road_foo/envs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/road-foo/road_foo/envs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environments/road-foo/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/road-foo/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,17 +14,7 @@
     <favorites_list name="Safe-RL-for-Driving" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/environments/road-foo/setup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -37,6 +22,13 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>mointer</find>
+      <find>monitor</find>
+      <find>seeding</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,6 +42,8 @@
         <option value="$PROJECT_DIR$/environments/road-foo/road_foo/envs/__init__.py" />
         <option value="$PROJECT_DIR$/environments/road-foo/road_foo/__init__.py" />
         <option value="$PROJECT_DIR$/environments/road-foo/road_foo/envs/gridworld.py" />
+        <option value="$PROJECT_DIR$/environments/gym-maze/setup.py" />
+        <option value="$PROJECT_DIR$/environments/gym-maze/maze_2d_q_learning.py" />
       </list>
     </option>
   </component>
@@ -89,22 +83,35 @@
               <item name="Safe-RL-for-Driving" type="b2602c69:ProjectViewProjectNode" />
               <item name="Safe-RL-for-Driving" type="462c0819:PsiDirectoryNode" />
               <item name="environments" type="462c0819:PsiDirectoryNode" />
-              <item name="road-foo" type="462c0819:PsiDirectoryNode" />
+              <item name="gym-maze" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Safe-RL-for-Driving" type="b2602c69:ProjectViewProjectNode" />
               <item name="Safe-RL-for-Driving" type="462c0819:PsiDirectoryNode" />
               <item name="environments" type="462c0819:PsiDirectoryNode" />
-              <item name="road-foo" type="462c0819:PsiDirectoryNode" />
-              <item name="road_foo" type="462c0819:PsiDirectoryNode" />
+              <item name="gym-maze" type="462c0819:PsiDirectoryNode" />
+              <item name="gym_maze" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Safe-RL-for-Driving" type="b2602c69:ProjectViewProjectNode" />
               <item name="Safe-RL-for-Driving" type="462c0819:PsiDirectoryNode" />
               <item name="environments" type="462c0819:PsiDirectoryNode" />
-              <item name="road-foo" type="462c0819:PsiDirectoryNode" />
-              <item name="road_foo" type="462c0819:PsiDirectoryNode" />
+              <item name="gym-maze" type="462c0819:PsiDirectoryNode" />
+              <item name="gym_maze" type="462c0819:PsiDirectoryNode" />
               <item name="envs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Safe-RL-for-Driving" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Safe-RL-for-Driving" type="462c0819:PsiDirectoryNode" />
+              <item name="environments" type="462c0819:PsiDirectoryNode" />
+              <item name="road-foo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Safe-RL-for-Driving" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Safe-RL-for-Driving" type="462c0819:PsiDirectoryNode" />
+              <item name="environments" type="462c0819:PsiDirectoryNode" />
+              <item name="road-foo" type="462c0819:PsiDirectoryNode" />
+              <item name="road_foo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Safe-RL-for-Driving" type="b2602c69:ProjectViewProjectNode" />
@@ -125,6 +132,13 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings>
+        <option name="useSoftWraps" value="true" />
+      </console-settings>
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -151,26 +165,34 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="1669" y="35" width="1846" height="1024" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19406267" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991511" visible="true" weight="0.19406267" />
+      <window_info id="Structure" order="1" sideWeight="0.5008489" side_tool="true" weight="0.19406267" />
+      <window_info id="Favorites" order="2" sideWeight="0.5008489" side_tool="true" weight="0.19406267" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32992035" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32992035" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32992035" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -192,8 +214,6 @@
     <entry file="file://$PROJECT_DIR$/environments/road-foo/road_foo.egg-info/top_level.txt" />
     <entry file="file://$PROJECT_DIR$/environments/road-foo/road_foo.egg-info/dependency_links.txt" />
     <entry file="file://$PROJECT_DIR$/environments/road-foo/road_foo.egg-info/PKG-INFO" />
-    <entry file="file://$PROJECT_DIR$/environments/gym-maze/setup.py" />
-    <entry file="file://$PROJECT_DIR$/environments/gym-maze/gym_maze/__init__.py" />
     <entry file="file://$PROJECT_DIR$/environments/gym-maze/gym_maze/envs/__init__.py" />
     <entry file="file://$PROJECT_DIR$/../anaconda3/envs/torch/lib/python3.7/site-packages/gym/envs/registration.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -253,6 +273,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../anaconda3/envs/torch/lib/python3.7/site-packages/gym/spaces/space.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../anaconda3/envs/torch/lib/python3.7/site-packages/gym/spaces/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="120" selection-start-line="12" selection-start-column="111" selection-end-line="12" selection-end-column="120" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../anaconda3/envs/torch/lib/python3.7/site-packages/gym/spaces/box.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/gym-maze/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/gym-maze/gym_maze/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/gym-maze/maze_2d_q_learning.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3249">
+          <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/gym-maze/gym_maze/envs/maze_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/gym-maze/gym_maze/envs/maze_view_2d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4712">
+          <caret line="262" column="13" lean-forward="true" selection-start-line="262" selection-start-column="13" selection-end-line="262" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/gym-maze/gym_maze/envs/maze_env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
