@@ -1,51 +1,90 @@
-import pygame
-from pygame.locals import QUIT
+from sprites import CarSprite, PedestrianSprite
 from utils.Vec2d import Vec2d
 
 
-class RoadUserSprite(pygame.sprite.Sprite):
-    def __init__(self, filepath, size, initial_position):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(filepath).convert_alpha()
-        self.image = pygame.transform.scale(self.image, size)
-        self.rect = self.image.get_rect()
-        self.rect.topleft = initial_position
+class Entity:
+    def __init__(self):
+        pass
+
+    def process(self, *args):
+        pass
+
+    def render(self, *args):
+        pass
 
 
-class CarSprite(RoadUserSprite):
-    def __init__(self, initial_position):
-        self.car_file = "medias/redcar.png"
-        self.car_size = (200, 100)
-        super(CarSprite, self).__init__(self.car_file, self.car_size, initial_position)
+class Agent(Entity):
+    def __init__(self):
+        super(Agent, self).__init__()
 
-    def update(self, position):
-        self.rect.x, self.rect.y = position.x, position.y
+    def process(self, *args):
+        pass
 
-class HumanSprite(pygame.sprite.Sprite):
-    def __init__(self, initial_position):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface([30, 30])
-        self.image.fill([255,255,255])
-        self.rect=self.image.get_rect()
-        self.rect.topleft=initial_position
+    def render(self, *args):
+        pass
+
+
+class RoadUser(Entity):
+    def __init__(self, path, vel, isCar=True):
+        super(Entity, self).__init__()
+        self.path = path
+        self.heading, self.timeNode, self.nTraj = self.getLength(path)
+        self.iTraj = 0
+        self.position = path[0]
+        self.time = 0
+        self.vel = velocity
+        self.angle = 0
+        if isCar:
+            self.sprite = CarSprite(path[0])
+        else:
+            self.sprite = PedestrianSprite(path[0])
+
+    def handlePath(self, path):
+        n = len(path)
+        headings = [Vec2d(0, 0)]
+        timeNode = [0]
+        if n > 1:
+            L = 0
+            for i in range(0, n - 2):
+                head = path[i + 1] - path[i]
+                headings.append(head)
+                l = head.length
+                t = l / self.vel
+                L += l
+                timeNode.append(timeNode[i] + t)
+        return headings, timeNode, n
+
+    def processPosition(self, t):
+        if self.iTraj < self.nTraj - 1 && t > self.timeNode[self.iTraj + 1]:
+            self.iTraj += 1
+        
+
+    def process(self, time_passed):
+        self.iTraj += 1
+        self.position = self.traj[self.iTraj]
+        self.sprite.update(self.position, self.angle)
+
+    def render(self, screen):
+        screen.blit(self.sprite.image, self.sprite.rect)
 
 
 if __name__ == '__main__':
+    import pygame
+    from pygame.locals import QUIT
+    import time
+
     pygame.init()
     screen = pygame.display.set_mode((640, 480), 0, 32)
-    car_file = "medias/redcar.png"
-    # sprite = CarSprite(car_file, (200, 100), (100, 100))
 
-    car1 = CarSprite((0, 0))
-    car2 = CarSprite((0, 300))
-    human = HumanSprite((200, 200))
+    traj1 = [Vec2d(100, 100), Vec2d(200, 100), Vec2d(300, 100), Vec2d(400, 100), Vec2d(400, 200), Vec2d(400, 300)]
+    velocity = 10
+    car = RoadUser(traj1, velocity)
+
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
-        screen.blit(car1.image, car1.rect)
-        screen.blit(car2.image, car2.rect)
-        screen.blit(human.image, human.rect)
-        position = Vec2d(100, 200)
-        car1.update(position)
+        car.render(screen)
+        car.process()
         pygame.display.update()
+        time.sleep(1)

@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/blackcar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/redcar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/simpleroad.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/Vec2d.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Safe-RL-for-Driving.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Safe-RL-for-Driving.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/maps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/pedestrian.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/world.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/environments/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,17 +35,12 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1667" />
-    <option name="y" value="27" />
-    <option name="width" value="1846" />
-    <option name="height" value="1024" />
-  </component>
   <component name="ProjectId" id="1RPmECtpMy71QZtMOaNtTPKdKcc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias" />
@@ -66,6 +57,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
       <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/utilities" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -84,8 +76,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="agents" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.agents ">
+    <configuration name="agents " type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Safe-RL-for-Driving" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -106,9 +98,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="sprites" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Safe-RL-for-Driving" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.agents " />
+      <item itemvalue="Python.sprites" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.agents" />
+        <item itemvalue="Python.agents " />
+        <item itemvalue="Python.sprites" />
       </list>
     </recent_temporary>
   </component>
@@ -149,6 +167,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/environments/gym-maze" />
     </ignored-roots>
