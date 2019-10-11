@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/maps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/pedestrian.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/world.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flow/sumo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/redcar.png" beforeDir="false" afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/redcar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +158,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -171,5 +171,21 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/environments/gym-maze" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py</url>
+          <line>78</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.headings" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

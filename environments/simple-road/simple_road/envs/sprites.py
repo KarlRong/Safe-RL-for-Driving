@@ -12,10 +12,12 @@ class RoadUserSprite(pygame.sprite.Sprite):
         self.ang = 0
 
     def update(self, position, angle):
-        self.rect.x, self.rect.y = position.x, position.y
+        # self.rect.x, self.rect.y = position.x, position.y
         if self.ang != angle:
             self.image = pygame.transform.rotate(self.image, angle)
+            self.rect = self.image.get_rect()
             self.ang = angle
+        self.rect.center = position
 
 
 class CarSprite(RoadUserSprite):
