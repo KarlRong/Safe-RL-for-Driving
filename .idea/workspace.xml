@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/flow/sumo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/redcar.png" beforeDir="false" afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias/redcar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commonroad/ZAM_Tutorial-1_2_T-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commonroad/commondroad_io_tutorial.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +38,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VAE-Motion-Planning" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
