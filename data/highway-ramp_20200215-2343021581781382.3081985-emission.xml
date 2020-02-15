@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2020年02月15日 星期六 23时43分05秒 by Eclipse SUMO GUI Version 1.4.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway-ramp_20200215-2343021581781382.3081985.net.xml"/>
+        <route-files value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway-ramp_20200215-2343021581781382.3081985.rou.xml"/>
+        <additional-files value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway-ramp_20200215-2343021581781382.3081985.add.xml"/>
+    </input>
+
+    <output>
+        <emission-output value="./data/highway-ramp_20200215-2343021581781382.3081985-emission.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <step-length value="0.2"/>
+    </time>
+
+    <processing>
+        <lateral-resolution value="1"/>
+        <collision.check-junctions value="true"/>
+        <time-to-teleport value="-1"/>
+    </processing>
+
+    <report>
+        <no-step-log value="true"/>
+    </report>
+
+    <traci_server>
+        <remote-port value="49437"/>
+        <num-clients value="1"/>
+    </traci_server>
+
+    <random_number>
+        <seed value="87106"/>
+    </random_number>
+
+    <gui_only>
+        <gui-settings-file value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway-ramp_20200215-2343021581781382.3081985.gui.cfg"/>
+        <tracker-interval value="0.2"/>
+    </gui_only>
+
+</configuration>
+-->
+
+<emission-export xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/emission_file.xsd">
+    <timestep time="0.00"/>
+    <timestep time="0.20"/>
+    <timestep time="0.40"/>
+    <timestep time="0.60"/>
+    <timestep time="0.80"/>
+    <timestep time="1.00">
+        <vehicle id="highway_flow_00.0" eclass="HBEFA3/PC_G_EU4" CO2="5398.34" CO="59.36" HC="0.41" NOx="1.80" PMx="0.11" fuel="2.32" electricity="0.00" noise="73.31" route="routehighway_0_0" type="human" waiting="0.00" lane="highway_0_0" pos="5.10" speed="28.80" angle="90.00" x="4.85" y="133.42"/>
+        <vehicle id="highway_flow_001.0" eclass="HBEFA3/PC_G_EU4" CO2="4911.41" CO="40.34" HC="0.31" NOx="1.60" PMx="0.09" fuel="2.11" electricity="0.00" noise="72.53" route="routehighway_0_1" type="human" waiting="0.00" lane="highway_0_1" pos="5.10" speed="27.23" angle="90.00" x="4.85" y="136.62"/>
+        <vehicle id="on_ramp_flow_10.0" eclass="HBEFA3/PC_G_EU4" CO2="3488.58" CO="0.00" HC="0.06" NOx="1.06" PMx="0.04" fuel="1.50" electricity="0.00" noise="69.51" route="routeon_ramp_0_0" type="human" waiting="0.00" lane="on_ramp_0_0" pos="5.10" speed="21.62" angle="45.00" x="262.89" y="2.05"/>
+    </timestep>
+    <timestep time="1.20">
+        <vehicle id="highway_flow_00.0" eclass="HBEFA3/PC_G_EU4" CO2="0.00" CO="0.00" HC="0.00" NOx="0.00" PMx="0.00" fuel="0.00" electricity="0.00" noise="73.31" route="routehighway_0_0" type="human" waiting="0.00" lane="highway_0_0" pos="10.86" speed="28.80" angle="90.00" x="10.33" y="133.42"/>
+        <vehicle id="highway_flow_001.0" eclass="HBEFA3/PC_G_EU4" CO2="0.00" CO="0.00" HC="0.00" NOx="0.00" PMx="0.00" fuel="0.00" electricity="0.00" noise="72.39" route="routehighway_0_1" type="human" waiting="0.00" lane="highway_0_1" pos="10.54" speed="27.21" angle="90.00" x="10.03" y="136.62"/>
+        <vehicle id="on_ramp_flow_10.0" eclass="HBEFA3/PC_G_EU4" CO2="0.00" CO="0.00" HC="0.00" NOx="0.00" PMx="0.00" fuel="0.00" electricity="0.00" noise="68.48" route="routeon_ramp_0_0" type="human" waiting="0.00" lane="on_ramp_0_0" pos="9.40" speed="21.48" angle="45.00" x="265.57" y="4.73"/>
+    </timestep>
+</emission-export>

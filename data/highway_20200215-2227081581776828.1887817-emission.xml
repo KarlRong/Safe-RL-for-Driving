@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2020年02月15日 星期六 22时27分13秒 by Eclipse SUMO GUI Version 1.4.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway_20200215-2227081581776828.1887817.net.xml"/>
+        <route-files value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway_20200215-2227081581776828.1887817.rou.xml"/>
+        <additional-files value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway_20200215-2227081581776828.1887817.add.xml"/>
+    </input>
+
+    <output>
+        <emission-output value="./data/highway_20200215-2227081581776828.1887817-emission.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <step-length value="0.2"/>
+    </time>
+
+    <processing>
+        <collision.check-junctions value="true"/>
+        <time-to-teleport value="-1"/>
+    </processing>
+
+    <report>
+        <no-step-log value="true"/>
+    </report>
+
+    <traci_server>
+        <remote-port value="54285"/>
+        <num-clients value="1"/>
+    </traci_server>
+
+    <random_number>
+        <seed value="51634"/>
+    </random_number>
+
+    <gui_only>
+        <gui-settings-file value="/home/rong/flow/flow/core/kernel/network/debug/cfg/highway_20200215-2227081581776828.1887817.gui.cfg"/>
+        <tracker-interval value="0.2"/>
+    </gui_only>
+
+</configuration>
+-->
+
+<emission-export xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/emission_file.xsd">
+    <timestep time="0.00"/>
+</emission-export>

@@ -2,10 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/commonroad/ZAM_Tutorial-1_2_T-1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commonroad/commondroad_io_tutorial.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway-ramp_20200215-2329201581780560.2142074-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway-ramp_20200215-2335101581780910.1438553-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway-ramp_20200215-2335421581780942.6839414-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway-ramp_20200215-2343021581781382.3081985-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.0131612-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.0524108-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.0724995-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.08281-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.0859883-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.1077795-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.1170275-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.1311448-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.1460965-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.1510177-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-1838161581763096.1575303-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.5409818-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.5434413-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.6292496-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.752685-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.7711046-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.7790186-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.7996037-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.8071203-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.810336-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.828097-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2226131581776773.8367507-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2227081581776828.1887817-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2228351581776915.0619667-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2249471581778187.408133-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/highway_20200215-2249561581778196.0961058-emission.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rl/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rl/simulate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rl/singleagent/highway.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rl/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Safe-RL-for-Driving.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Safe-RL-for-Driving.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commonroad/commondroad_io_tutorial.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/commonroad/commondroad_io_tutorial.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flow/sumo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flow/tutorial/tutorial01.py" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,14 +71,20 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VAE-Motion-Planning" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/rl" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -51,28 +94,18 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rl" />
+      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flow/singleagent" />
       <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
       <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/utilities" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias" />
-    </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.agents ">
-    <configuration name="agents " type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.train_highway">
+    <configuration name="simulate" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Safe-RL-for-Driving" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -80,12 +113,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rl/simulate.py" />
+      <option name="PARAMETERS" value="highway" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -93,7 +126,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sprites" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="train_highway" type="PythonConfigurationType" factoryName="Python">
       <module name="Safe-RL-for-Driving" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -101,12 +134,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/environments/simple-road/simple_road/envs/sprites.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rl/train.py" />
+      <option name="PARAMETERS" value="highway" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -115,15 +148,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.agents " />
-      <item itemvalue="Python.sprites" />
+      <item itemvalue="Python.train_highway" />
+      <item itemvalue="Python.simulate" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.agents " />
-        <item itemvalue="Python.sprites" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -169,6 +196,56 @@
       <path value="$PROJECT_DIR$/environments/gym-maze" />
     </ignored-roots>
   </component>
+  <component name="WindowStateProjectService">
+    <state x="2157" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581762774631">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2157" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581762774631" />
+    <state x="2226" y="130" width="658" height="815" key="#simulate" timestamp="1581780558150">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2226" y="130" width="658" height="815" key="#simulate/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581780558150" />
+    <state x="2226" y="130" width="658" height="815" key="#train" timestamp="1581758742171">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2226" y="130" width="658" height="815" key="#train/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581758742171" />
+    <state width="1893" height="192" key="GridCell.Tab.0.bottom" timestamp="1581788915795">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="192" key="GridCell.Tab.0.bottom/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581788915795" />
+    <state width="1893" height="192" key="GridCell.Tab.0.center" timestamp="1581788915795">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="192" key="GridCell.Tab.0.center/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581788915795" />
+    <state width="1893" height="192" key="GridCell.Tab.0.left" timestamp="1581788915795">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="192" key="GridCell.Tab.0.left/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581788915795" />
+    <state width="1893" height="192" key="GridCell.Tab.0.right" timestamp="1581788915795">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="192" key="GridCell.Tab.0.right/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581788915795" />
+    <state width="1893" height="145" key="GridCell.Tab.1.bottom" timestamp="1581787538737">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="145" key="GridCell.Tab.1.bottom/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581787538737" />
+    <state width="1893" height="145" key="GridCell.Tab.1.center" timestamp="1581787538737">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="145" key="GridCell.Tab.1.center/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581787538737" />
+    <state width="1893" height="145" key="GridCell.Tab.1.left" timestamp="1581787538737">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="145" key="GridCell.Tab.1.left/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581787538737" />
+    <state width="1893" height="145" key="GridCell.Tab.1.right" timestamp="1581787538737">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1893" height="145" key="GridCell.Tab.1.right/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581787538737" />
+    <state x="2041" y="175" key="SettingsEditor" timestamp="1581755736039">
+      <screen x="1600" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2041" y="175" key="SettingsEditor/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1581755736039" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -176,6 +253,11 @@
           <url>file://$PROJECT_DIR$/environments/simple-road/simple_road/envs/agents.py</url>
           <line>78</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../flow/flow/core/kernel/vehicle/traci.py</url>
+          <line>1030</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
