@@ -97,7 +97,7 @@ def setup_exps_rllib(flow_params,
 
     config["num_workers"] = n_cpus
     config["num_cpus_per_worker"] = 1
-    config["use_pytorch"] = True
+    config["use_pytorch"] = False
     config["num_gpus"] = 0
     config["train_batch_size"] = horizon * n_rollouts
     config["gamma"] = 0.999  # discount rate
@@ -106,7 +106,7 @@ def setup_exps_rllib(flow_params,
     config["lambda"] = 0.97
     config["kl_target"] = 0.02
     config["num_sgd_iter"] = 10
-    config['clip_actions'] = False  # FIXME(ev) temporary ray bug
+    config['clip_actions'] = True  # FIXME(ev) temporary ray bug
     config["horizon"] = horizon
 
     # save the flow params for replay
@@ -134,7 +134,6 @@ if __name__ == "__main__":
     if flags.rl_trainer == "RLlib":
         flow_params = submodule.flow_params
         n_cpus = submodule.N_CPUS
-        # n_cpus = 11
         n_rollouts = submodule.N_ROLLOUTS
 
         alg_run, gym_name, config = setup_exps_rllib(
@@ -148,11 +147,12 @@ if __name__ == "__main__":
                 "config": {
                     **config
                 },
+                "restore": "/home/rong/ray_results/highway_lanechange/PPO_LaneChangeAccelPOEnv-v0_f9e64d14_0_2020-02-25_01-27-48iwsfxxrq/checkpoint_197/checkpoint-197",
                 "checkpoint_freq": 1,
                 "checkpoint_at_end": True,
                 "max_failures": 999,
                 "stop": {
-                    "training_iteration": 200,
+                    "training_iteration": 400,
                 },
             }
         })

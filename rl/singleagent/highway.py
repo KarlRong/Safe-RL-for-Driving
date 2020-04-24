@@ -8,12 +8,13 @@ from flow.core.params import NetParams, InFlows, SumoCarFollowingParams, SumoLan
 # from flow.networks.merge import ADDITIONAL_NET_PARAMS
 from flow.networks.highway_ramps import ADDITIONAL_NET_PARAMS
 from flow.core.params import VehicleParams
-from flow.controllers import IDMController, RLController
-from flow.envs import MergePOEnv
+from flow.controllers import IDMController, RLController, StaticLaneChanger
+# from flow.envs import MergePOEnv
+from rl.env.lane_change_accel import LaneChangeAccelPOEnv
 # from flow.networks import MergeNetwork
 # from flow.networks.highway import HighwayNetwork, ADDITIONAL_NET_PARAMS
-from flow.networks import HighwayRampsNetwork
-
+from rl.net.highway_ramps import HighwayRampsNetwork
+from rl.controller.routing_controllers import HighwayRouter
 
 # experiment number
 # - 0: 10% RL penetration,  5 max controllable vehicles
@@ -26,10 +27,11 @@ HORIZON = 3000
 # number of rollouts per training iteration
 N_ROLLOUTS = 20
 # number of parallel workers
-N_CPUS = 1
+N_CPUS = 11
 
 # inflow rate at the highway
-FLOW_RATE = 2000
+FLOW_RATE = 1300
+ON_RAMPS_INFLOW_RATE = 350
 # percent of autonomous vehicles
 RL_PENETRATION = [0.1, 0.25, 0.33][EXP_NUM]
 # num_rl term (see ADDITIONAL_ENV_PARAMs)
@@ -71,6 +73,7 @@ vehicles.add(
     acceleration_controller=(IDMController, {
         "noise": 0.2
     }),
+    # lane_change_controller=(StaticLaneChanger, {}),
     car_following_params=SumoCarFollowingParams(
         speed_mode="obey_safe_speed",
     ),
@@ -84,11 +87,13 @@ vehicles.add(
 vehicles.add(
     veh_id="rl",
     acceleration_controller=(RLController, {}),
+    lane_change_controller=(StaticLaneChanger, {}),
+    routing_controller=(HighwayRouter, {}),
     car_following_params=SumoCarFollowingParams(
         speed_mode="obey_safe_speed",
     ),
     lane_change_params=SumoLaneChangeParams(
-        lane_change_mode=1621,
+        lane_change_mode=256,
         model="SL2015",
         lc_impatience="0.1",
         lc_time_to_impatience="1.0"
@@ -107,22 +112,22 @@ inflow.add(
 inflow.add(
     veh_type="rl",
     edge="highway_0",
-    vehs_per_hour=RL_PENETRATION * FLOW_RATE,
+    vehs_per_hour=100,
     depart_lane="free",
     depart_speed=10)
 inflow.add(
     veh_type="human",
     edge="on_ramp_0",
-    vehs_per_hour=350,
+    vehs_per_hour=ON_RAMPS_INFLOW_RATE,
     depart_lane="free",
     depart_speed=7.5)
 
 flow_params = dict(
     # name of the experiment
-    exp_tag="stabilizing_open_network_merges",
+    exp_tag="highway_lanechange",
 
     # name of the flow environment the experiment is running on
-    env_name=MergePOEnv,
+    env_name=LaneChangeAccelPOEnv,
 
     # name of the network class the experiment is running on
     # network=MergeNetwork,
@@ -135,7 +140,7 @@ flow_params = dict(
     # sumo-related parameters (see flow.core.params.SumoParams)
     sim=SumoParams(
         sim_step=0.2,
-        render=True,
+        render=False,
         lateral_resolution=1.0,
         restart_instance=True,
     ),
@@ -143,14 +148,16 @@ flow_params = dict(
     # environment related parameters (see flow.core.params.EnvParams)
     env=EnvParams(
         horizon=HORIZON,
-        sims_per_step=5,
+        sims_per_step=1,
         warmup_steps=0,
         additional_params={
-            "max_accel": 1.5,
-            "max_decel": 1.5,
+            "max_accel": 3,
+            "max_decel": 3,
             "target_velocity": 20,
-            "num_rl": NUM_RL,
+            "lane_change_duration": 4,
+            "num_rl": 5,
         },
+
     ),
 
     # network-related parameters (see flow.core.params.NetParams and the
