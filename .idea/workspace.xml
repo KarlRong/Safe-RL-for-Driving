@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/rl/controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rl/controller/routing_controllers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rl/net/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rl/net/highway_ramps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rl/rewards.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rl/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rl/utils/rllib.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rl/visualizer_rllib.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rl/singleagent/highway_movexy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rl/singleagent/highway.py" beforeDir="false" afterPath="$PROJECT_DIR$/rl/singleagent/highway.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rl/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/rl/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rl/tutorials/tutorial01_sumo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/rl/tutorials/tutorial01_sumo.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VAE-Motion-Planning" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/rl/singleagent" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -67,19 +58,20 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rl/singleagent" />
+      <recent name="$PROJECT_DIR$/rl/env" />
+      <recent name="$PROJECT_DIR$/rl" />
+      <recent name="$PROJECT_DIR$/rl/net" />
+      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/flow/singleagent" />
       <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
       <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/utilities" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/rl" />
-      <recent name="$PROJECT_DIR$/rl/env" />
-      <recent name="$PROJECT_DIR$/rl/net" />
-      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/medias" />
-    </key>
   </component>
-  <component name="RunManager" selected="Python.visualizer_rllib">
+  <component name="RunManager" selected="Python.train_highway_xy">
     <configuration name="simulate" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Safe-RL-for-Driving" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,6 +93,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="simulate_xy" type="PythonConfigurationType" factoryName="Python">
+      <module name="Safe-RL-for-Driving" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rl/simulate.py" />
+      <option name="PARAMETERS" value="highway_movexy" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="train_highway" type="PythonConfigurationType" factoryName="Python">
       <module name="Safe-RL-for-Driving" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,6 +128,27 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rl/train.py" />
       <option name="PARAMETERS" value="highway" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="train_highway_xy" type="PythonConfigurationType" factoryName="Python">
+      <module name="Safe-RL-for-Driving" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rl/train.py" />
+      <option name="PARAMETERS" value="highway_movexy" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -145,7 +179,9 @@
     </configuration>
     <list>
       <item itemvalue="Python.simulate" />
+      <item itemvalue="Python.simulate_xy" />
       <item itemvalue="Python.train_highway" />
+      <item itemvalue="Python.train_highway_xy" />
       <item itemvalue="Python.visualizer_rllib" />
     </list>
   </component>
@@ -194,9 +230,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2157" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582716734800">
+    <state x="2219" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588002823903">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state x="2219" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588002823903" />
     <state x="2157" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716734800" />
     <state x="2157" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582552720680" />
     <state x="2226" y="130" width="658" height="815" key="#simulate" timestamp="1581780558150">
@@ -216,44 +253,52 @@
     </state>
     <state x="2343" y="285" key="FileChooserDialogImpl/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582944880572" />
     <state x="2343" y="285" width="424" height="480" key="FileChooserDialogImpl/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582644202638" />
-    <state width="1893" height="310" key="GridCell.Tab.0.bottom" timestamp="1582716736063">
+    <state width="1893" height="315" key="GridCell.Tab.0.bottom" timestamp="1588009257878">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="315" key="GridCell.Tab.0.bottom/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588009257878" />
     <state width="1893" height="310" key="GridCell.Tab.0.bottom/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
     <state width="1893" height="391" key="GridCell.Tab.0.bottom/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582565266280" />
-    <state width="1893" height="310" key="GridCell.Tab.0.center" timestamp="1582716736063">
+    <state width="1893" height="315" key="GridCell.Tab.0.center" timestamp="1588009257878">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="315" key="GridCell.Tab.0.center/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588009257878" />
     <state width="1893" height="310" key="GridCell.Tab.0.center/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
     <state width="1893" height="391" key="GridCell.Tab.0.center/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582565266280" />
-    <state width="1893" height="310" key="GridCell.Tab.0.left" timestamp="1582716736063">
+    <state width="1893" height="315" key="GridCell.Tab.0.left" timestamp="1588009257878">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="315" key="GridCell.Tab.0.left/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588009257878" />
     <state width="1893" height="310" key="GridCell.Tab.0.left/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
     <state width="1893" height="391" key="GridCell.Tab.0.left/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582565266280" />
-    <state width="1893" height="310" key="GridCell.Tab.0.right" timestamp="1582716736063">
+    <state width="1893" height="315" key="GridCell.Tab.0.right" timestamp="1588009257878">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="315" key="GridCell.Tab.0.right/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588009257878" />
     <state width="1893" height="310" key="GridCell.Tab.0.right/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
     <state width="1893" height="391" key="GridCell.Tab.0.right/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582565266280" />
-    <state width="1893" height="489" key="GridCell.Tab.1.bottom" timestamp="1582639555026">
+    <state width="1893" height="489" key="GridCell.Tab.1.bottom" timestamp="1588008156779">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="489" key="GridCell.Tab.1.bottom/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588008156779" />
     <state width="1893" height="489" key="GridCell.Tab.1.bottom/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582639555026" />
     <state width="1893" height="140" key="GridCell.Tab.1.bottom/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582463293959" />
-    <state width="1893" height="489" key="GridCell.Tab.1.center" timestamp="1582639555025">
+    <state width="1893" height="489" key="GridCell.Tab.1.center" timestamp="1588008156779">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="489" key="GridCell.Tab.1.center/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588008156779" />
     <state width="1893" height="489" key="GridCell.Tab.1.center/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582639555025" />
     <state width="1893" height="140" key="GridCell.Tab.1.center/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582463293959" />
-    <state width="1893" height="489" key="GridCell.Tab.1.left" timestamp="1582639555025">
+    <state width="1893" height="489" key="GridCell.Tab.1.left" timestamp="1588008156779">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="489" key="GridCell.Tab.1.left/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588008156779" />
     <state width="1893" height="489" key="GridCell.Tab.1.left/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582639555025" />
     <state width="1893" height="140" key="GridCell.Tab.1.left/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582463293959" />
-    <state width="1893" height="489" key="GridCell.Tab.1.right" timestamp="1582639555025">
+    <state width="1893" height="489" key="GridCell.Tab.1.right" timestamp="1588008156779">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
+    <state width="1893" height="489" key="GridCell.Tab.1.right/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1588008156779" />
     <state width="1893" height="489" key="GridCell.Tab.1.right/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582639555025" />
     <state width="1893" height="140" key="GridCell.Tab.1.right/0.205.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582463293959" />
     <state x="2041" y="175" key="SettingsEditor" timestamp="1582082041287">

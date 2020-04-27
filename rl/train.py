@@ -147,7 +147,7 @@ if __name__ == "__main__":
                 "config": {
                     **config
                 },
-                "restore": "/home/rong/ray_results/highway_lanechange/PPO_LaneChangeAccelPOEnv-v0_f9e64d14_0_2020-02-25_01-27-48iwsfxxrq/checkpoint_197/checkpoint-197",
+                # "restore": "/home/rong/ray_results/highway_lanechange/PPO_LaneChangeAccelPOEnv-v0_f9e64d14_0_2020-02-25_01-27-48iwsfxxrq/checkpoint_197/checkpoint-197",
                 "checkpoint_freq": 1,
                 "checkpoint_at_end": True,
                 "max_failures": 999,
