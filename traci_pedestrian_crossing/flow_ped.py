@@ -82,8 +82,9 @@ net_params = NetParams(
     "net":"/home/rong/Safe-RL-for-Driving/traci_pedestrian_crossing/pedcrossing.net.xml",
     # features associated with the routes vehicles take
     "vtype": "/home/rong/Safe-RL-for-Driving/traci_pedestrian_crossing/pedcrossing.add.xml",
-
-    # "rou":"/home/rong/Safe-RL-for-Driving/traci_pedestrian_crossing/data/pedcrossing.rou.xml",
+    # 和下方specify_routes一致
+    "rou":"/home/rong/Safe-RL-for-Driving/traci_pedestrian_crossing/data/pedcrossing.rou.xml",
+    "trip":"/home/rong/Safe-RL-for-Driving/traci_pedestrian_crossing/pedestrians.trip.xml"
     },
     inflows=inflow,
 )
