@@ -80,11 +80,11 @@ std::vector<double> forward_reachable_box(Vector2d &x0, Vector2d &v0, double r)
 
 std::vector<double> backward_reachable_box(Vector2d &x0, Vector2d &v0, double r)
 {
-    Vector2d tau_x_plus = (2. / 3) * (-v0.array().pow(2) - r + v0.array() * (v0.array().pow(2) + r).sqrt()).matrix();
-    Vector2d tau_x_minus = (2. / 3) * (-v0.array().pow(2) - r - v0.array() * (v0.array().pow(2) + r).sqrt()).matrix();
+    Vector2d tau_x_plus = (2. / 3) * (v0.array().pow(2) - r + v0.array() * (v0.array().pow(2) + r).sqrt()).matrix();
+    Vector2d tau_x_minus = (2. / 3) * (v0.array().pow(2) - r - v0.array() * (v0.array().pow(2) + r).sqrt()).matrix();
 
-    Vector2d xmax = (v0.array() * tau_x_plus.array() + x0.array() + ((1. / 3) * tau_x_plus.array().pow(2) * (-tau_x_plus.array() + r)).sqrt()).matrix();
-    Vector2d xmin = (v0.array() * tau_x_minus.array() + x0.array() - ((1. / 3) * tau_x_minus.array().pow(2) * (-tau_x_minus.array() + r)).sqrt()).matrix();
+    Vector2d xmax = (v0.array() * tau_x_plus.array() + x0.array() + ((1. / 3) * tau_x_plus.array().pow(2) * (tau_x_plus.array() + r)).sqrt()).matrix();
+    Vector2d xmin = (v0.array() * tau_x_minus.array() + x0.array() - ((1. / 3) * tau_x_minus.array().pow(2) * (tau_x_minus.array() + r)).sqrt()).matrix();
 
     double tau_v_plus = 0.5 * r;
     Vector2d vmax = (v0.array() + std::sqrt(tau_v_plus * (tau_v_plus + r))).matrix();

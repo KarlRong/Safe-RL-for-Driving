@@ -5,6 +5,7 @@
 #include <memory>
 #include <iostream>
 #include <random>
+#include <time.h>
 
 class World
 {
@@ -25,6 +26,7 @@ public:
                                                                                                                                                                                                        w_(w),
                                                                                                                                                                                                        h_(h)
     {
+        e_.seed(std::time(0));
         T_ = objShapes_.size();
         manager_ = std::make_shared<fcl::DynamicAABBTreeCollisionManagerd>();
         for (const auto &objShape : objShapes_)

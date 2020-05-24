@@ -11,10 +11,11 @@ class FMTree
     friend void show(const FMTree &fmt);
 
 public:
-    FMTree(const std::vector<double> &s_init, const std::vector<double> &s_goal, int N, std::shared_ptr<World> world) : s_init_(s_init),
+    FMTree(const std::vector<double> &s_init, const std::vector<double> &s_goal, int N, std::shared_ptr<World> world, bool draw=false) : s_init_(s_init),
                                                                                                                         s_goal_(s_goal),
                                                                                                                         N_(N),
-                                                                                                                        world_(world)
+                                                                                                                        world_(world),
+                                                                                                                        draw_(draw)
     {
         Pset_.push_back(s_init_);
         for (int i = 1; i < N_ - 1; ++i)
@@ -51,6 +52,7 @@ private:
     std::vector<bool> bool_closed_;
     int N_ = 0;
     std::shared_ptr<World> world_;
+    bool draw_=false;
     int itr_ = 0;
 
     std::vector<int> result_;

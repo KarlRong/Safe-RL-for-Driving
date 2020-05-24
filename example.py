@@ -21,7 +21,7 @@ W = World(x_min, x_max, v_min, v_max, obstacle_set)
 s_init = [0.1, 0.5, 0.0, 0.0]
 s_goal = [0.9, 0.9, 0.0, 0.0]
 
-Nsample = 400
+Nsample = 800
 
 fmt = FMTree(s_init, s_goal, Nsample, W)
 
@@ -29,7 +29,7 @@ fmt = FMTree(s_init, s_goal, Nsample, W)
 fig, ax = plt.subplots()  # Create a figure and an axes.
 fmt.world.show(ax)
 plt.pause(0.5)
-draw = False
+draw = True
 save = False
 ts = time.time()
 idx_solution = fmt.solve(ax, draw, save)

@@ -165,8 +165,9 @@ def test():
     N = 10 ** 5
     s_set = np.empty([N, 4])
     for i in range(0, N):
-        s_set[i, :] = [random.random() - 0.5, random.random() - 0.5, 3 * random.random() - 0.5,
-                       3 * random.random() - 0.5]
+        # s_set[i, :] = [random.random() - 0.5, random.random() - 0.5, 3 * random.random() - 0.5,
+        #                3 * random.random() - 0.5]
+        s_set[i, :] = [0.2, 0.3, 0.5, 0.6]
 
     s_c = np.array([0, 0, 0.2, 0.2])
     idxset = [x for x in range(0, N)]

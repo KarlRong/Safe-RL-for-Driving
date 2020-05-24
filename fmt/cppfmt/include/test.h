@@ -107,8 +107,8 @@ void testDoubleintegratorCost()
     std::uniform_real_distribution<double> vydis(vymin, vymax);
     for (int i = 0; i < n; ++i)
     {
-        s_set.push_back(std::vector<double>({xdis(e), ydis(e), 0, vxdis(e), vydis(e)}));
-        // s_set.push_back(std::vector<double>({0.2, 0.3, 0.5, 0.6}));
+        // s_set.push_back(std::vector<double>({xdis(e), ydis(e), vxdis(e), vydis(e), 0}));
+        s_set.push_back(std::vector<double>({0.2, 0.3, 0.5, 0.6}));
     }
     std::vector<double> s_c{0, 0, 0.2, 0.2};
     std::vector<int> idxset;
@@ -182,7 +182,7 @@ void testFMT()
 
     std::vector<double> s_init{0.1, 0.5, 0, 0};
     std::vector<double> s_goal{0.9, 0.9, 0, 0};
-    int Nsample = 400;
+    int Nsample = 2000;
 
     clock_t start, end;
     start = clock();
