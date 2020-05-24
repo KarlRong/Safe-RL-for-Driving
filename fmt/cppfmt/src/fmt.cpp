@@ -9,6 +9,8 @@
 
 std::vector<int> FMTree::solve()
 {
+    auto comparator = [&](int lhs, int rhs) { return cost_[lhs] > cost_[rhs]; };
+    std::make_heap(open_.begin(), open_.end(), comparator);
     while (true)
     {
         ++itr_;
@@ -16,7 +18,7 @@ std::vector<int> FMTree::solve()
         {
             break;
         }
-        if(!bool_unvisit_[N_ - 1])
+        if (goalReached_)
         {
             break;
         }
@@ -44,39 +46,21 @@ std::vector<int> FMTree::solve()
 bool FMTree::extend()
 {
     double r = 1;
-    std::vector<int> idxset_open, idxset_unvisit;
-    for (int i = 0; i < N_; ++i)
-    {
-        if (bool_open_[i])
-        {
-            idxset_open.push_back(i);
-        }
-        if (bool_unvisit_[i])
-        {
-            idxset_unvisit.push_back(i);
-        }
-    }
 
-    if (idxset_open.size() == 0)
+    auto comparator = [&](int lhs, int rhs) { return cost_[lhs] > cost_[rhs]; };
+    int idx_lowest = 0;
+    if (!open_.empty())
+    {
+        idx_lowest = open_.front();
+    }
+    else
     {
         return false;
     }
-
-    double min_cost = DBL_MAX;
-    int idx_lowest = 0;
-    for (const auto &idx : idxset_open)
-    {
-        if (cost_[idx] < min_cost)
-        {
-            min_cost = cost_[idx];
-            idx_lowest = idx;
-        }
-    }
-
-    auto idx_cost_time = filter_reachable(Pset_, idxset_unvisit, Pset_[idx_lowest], r, true);
+    auto idx_cost_time = filter_reachable(Pset_, unvisit_, Pset_[idx_lowest], r, true);
     for (const auto &idx_near : std::get<0>(idx_cost_time))
     {
-        auto idx_cost_time_near = filter_reachable(Pset_, idxset_open, Pset_[idx_near], r, false);
+        auto idx_cost_time_near = filter_reachable(Pset_, open_, Pset_[idx_near], r, false);
         std::vector<int> &idxset_cand = std::get<0>(idx_cost_time_near);
         std::vector<double> &distset_cand = std::get<1>(idx_cost_time_near);
         std::vector<double> &timeset_cand = std::get<2>(idx_cost_time_near);
@@ -101,15 +85,23 @@ bool FMTree::extend()
         auto waypoints = gen_trajectory(Pset_[idx_parent], Pset_[idx_near], time_near, 10);
         if (world_->isValidStates(waypoints))
         {
-            bool_unvisit_[idx_near] = false;
-            bool_open_[idx_near] = true;
+            unvisit_.remove(idx_near);
+            open_.push_back(idx_near);
+            std::push_heap(begin(open_), end(open_), comparator);
             cost_[idx_near] = min_cost_near;
             time_[idx_near] = time_near;
             parent_[idx_near] = idx_parent;
+            if (idx_near == N_ - 1)
+            {
+                goalReached_ = true;
+            }
         }
     }
-    bool_open_[idx_lowest] = false;
-    bool_closed_[idx_lowest] = true;
+        std::pop_heap(begin(open_), end(open_), comparator);
+        open_.pop_back();
+    closed_.push_back(idx_lowest);
+    // bool_open_[idx_lowest] = false;
+    // bool_closed_[idx_lowest] = true;
     return true;
 }
 
@@ -118,25 +110,9 @@ namespace plt = matplotlibcpp;
 void show(const FMTree &fmt)
 {
     // 绘出 open, close , unvisit
-    std::vector<int> closeSet, openSet, unvisitSet;
-    for (int i = 1; i < fmt.N_; ++i)
-    {
-        if (fmt.bool_closed_[i])
-        {
-            closeSet.push_back(i);
-        }
-        if (fmt.bool_open_[i])
-        {
-            openSet.push_back(i);
-        }
-        if (fmt.bool_unvisit_[i])
-        {
-            unvisitSet.push_back(i);
-        }
-    }
 
     std::vector<double> x, y;
-    for (const auto &idx : closeSet)
+    for (const auto &idx : fmt.closed_)
     {
         x.push_back(fmt.Pset_[idx][0]);
         y.push_back(fmt.Pset_[idx][1]);
@@ -150,7 +126,7 @@ void show(const FMTree &fmt)
     style["marker"] = "*";
     x.clear();
     y.clear();
-    for (const auto &idx : openSet)
+    for (const auto &idx : fmt.open_)
     {
         x.push_back(fmt.Pset_[idx][0]);
         y.push_back(fmt.Pset_[idx][1]);
@@ -161,7 +137,7 @@ void show(const FMTree &fmt)
     style["marker"] = "o";
     x.clear();
     y.clear();
-    for (const auto &idx : unvisitSet)
+    for (const auto &idx : fmt.unvisit_)
     {
         x.push_back(fmt.Pset_[idx][0]);
         y.push_back(fmt.Pset_[idx][1]);
@@ -180,11 +156,11 @@ void show(const FMTree &fmt)
 
     plt::scatter(x, y, 20, style);
 
-    for (const auto &idx : openSet)
+    for (const auto &idx : fmt.open_)
     {
         show_trajectory(fmt.Pset_[fmt.parent_[idx]], fmt.Pset_[idx], fmt.time_[idx], 20);
     }
-    for (const auto &idx : closeSet)
+    for (const auto &idx : fmt.closed_)
     {
         show_trajectory(fmt.Pset_[fmt.parent_[idx]], fmt.Pset_[idx], fmt.time_[idx], 20);
     }
@@ -194,5 +170,5 @@ void show(const FMTree &fmt)
         show_trajectory(fmt.Pset_[fmt.parent_[idx]], fmt.Pset_[idx], fmt.time_[idx], 20, "blue", "2");
     }
     // plt::show();
-    plt::pause(0.5);
+    plt::pause(0.7);
 }

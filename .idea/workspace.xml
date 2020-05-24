@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fig/final.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.py" beforeDir="false" afterPath="$PROJECT_DIR$/example.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmt/cppfmt/include/test.h" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/include/test.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/include/world.h" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/include/world.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/src/doubleintegrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/src/doubleintegrator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/src/fmt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/src/fmt.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning/python/fmt.py" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning/python/fmt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/pythonfmt/doubleintegrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/pythonfmt/doubleintegrator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -460,11 +453,6 @@
           <url>file://$PROJECT_DIR$/traci_pedestrian_crossing/flow_ped.py</url>
           <line>135</line>
           <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/fmt/pythonfmt/fmt.py</url>
-          <line>164</line>
-          <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/fmt/pythonfmt/doubleintegrator.py</url>

@@ -123,6 +123,32 @@ reachFilter filter_reachable(const std::vector<std::vector<double>> &Sset, const
     return std::make_tuple(idx_filter, dist_filter, time_filter);
 }
 
+reachFilter filter_reachable(const std::vector<std::vector<double>> &Sset, const std::list<int> &idxset, std::vector<double> &s_c, double r, bool ForR)
+{
+    Vector2d x_c, v_c;
+    x_c << s_c[0], s_c[1];
+    v_c << s_c[2], s_c[3];
+
+    std::vector<double> recBox = ForR ? forward_reachable_box(x_c, v_c, r) : backward_reachable_box(x_c, v_c, r);
+    std::vector<int> idx_filter;
+    std::vector<double> dist_filter, time_filter;
+    for (const auto &idx : idxset)
+    {
+        if (isinside(recBox, Sset[idx]))
+        {
+            std::vector<double> cost_tau = ForR ? cost_optimal(s_c, Sset[idx]) : cost_optimal(Sset[idx], s_c);
+            if (cost_tau[0] < r)
+            {
+                idx_filter.push_back(idx);
+                dist_filter.push_back(cost_tau[0]);
+                time_filter.push_back(cost_tau[1]);
+            }
+        }
+    }
+    return std::make_tuple(idx_filter, dist_filter, time_filter);
+}
+
+
 std::vector<std::vector<double>> gen_trajectory(const std::vector<double> &s0, const std::vector<double> &s1, double tau, int N_split)
 {
     std::vector<std::vector<double>> waypoints;

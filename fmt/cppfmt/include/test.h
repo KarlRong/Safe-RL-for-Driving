@@ -187,7 +187,7 @@ void testFMT()
     clock_t start, end;
     start = clock();
 
-    auto fmt = FMTree(s_init, s_goal, Nsample, world);
+    auto fmt = FMTree(s_init, s_goal, Nsample, world, false);
     fmt.solve();
     end = clock();
     std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
