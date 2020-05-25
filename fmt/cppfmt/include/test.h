@@ -16,6 +16,7 @@
 #include "world.h"
 #include "doubleintegrator.h"
 #include "fmt.h"
+#include "doublebvp.h"
 
 namespace plt = matplotlibcpp;
 
@@ -196,3 +197,13 @@ void testFMT()
     plt::show();
     return;
 }
+
+void testDoubleBvpConnect()
+{
+    std::vector<double> s0{0, 0, 0, 0, 0};
+    std::vector<double> s1{1,-1, 4, -1, 1};
+    show_trajectory_bvp(s0, s1);
+        // plt::show();
+    // plt::show();
+}
+

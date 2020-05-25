@@ -21,9 +21,11 @@ int main(int argc, char **argv)
     // testFcl();
     // testDoubleintegratorCost();
     // testDoubleintegratorConnect();
-    testFMT();
+    // testFMT();
+    testDoubleBvpConnect();
 
     end = clock();
     std::cout << "Run time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
     return 0;
 }
+ 

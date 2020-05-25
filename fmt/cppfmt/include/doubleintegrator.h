@@ -25,4 +25,3 @@ void show_trajectory(const std::vector<double> & s0, const std::vector<double> &
 
 
 
-
