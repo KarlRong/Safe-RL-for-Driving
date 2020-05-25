@@ -201,13 +201,11 @@ void testFMT()
 void testDoubleBvpConnect()
 {
     std::vector<double> s0{0, 0, 0, 0, 0};
-    std::vector<double> s1{1,-1, 4, -1, 1};
+    std::vector<double> s1{1, -1, 4, -1, 1};
     show_trajectory_bvp(s0, s1);
-        // plt::show();
+    // plt::show();
     // plt::show();
 }
-
-
 
 void testDoubleBvpCost()
 {
@@ -215,10 +213,10 @@ void testDoubleBvpCost()
     start = clock();
 
     // 随机点生成
-    int n = 500000;
+    int n = 5000000;
     std::vector<std::vector<double>> s_set;
     std::default_random_engine e(1);
-    double xmin = -1, xmax = 1, ymin = -1, ymax = 2, vxmin = -2, vxmax = 2.5, vymin = -0.5, vymax = 2.5, tmin=0, tmax = 2;
+    double xmin = -3, xmax = 3, ymin = -3, ymax = 3, vxmin = -3, vxmax = 2.5, vymin = -3, vymax = 2.5, tmin = 0, tmax = 50;
     std::uniform_real_distribution<double> xdis(xmin, xmax);
     std::uniform_real_distribution<double> ydis(ymin, ymax);
     std::uniform_real_distribution<double> vxdis(vxmin, vxmax);
@@ -229,7 +227,7 @@ void testDoubleBvpCost()
         s_set.push_back(std::vector<double>({xdis(e), ydis(e), vxdis(e), vydis(e), tdis(e)}));
         // s_set.push_back(std::vector<double>({0.2, 0.3, 0.5, 0.6}));
     }
-    std::vector<double> s_c{0, 0, 0.5, 0, 1};
+    std::vector<double> s_c{0, 0, 0.5, -0.5, 20};
     std::vector<int> idxset;
     for (int i = 0; i < n; ++i)
     {
@@ -252,30 +250,36 @@ void testDoubleBvpCost()
     }
 
     // 绘出结果
-    std::vector<double> x, y, t;
+    std::vector<double> x, y, vx, vy, t;
     for (const auto &state : s_for)
     {
         x.push_back(state[0]);
         y.push_back(state[1]);
+        vx.push_back(state[2]);
+        vy.push_back(state[3]);
         t.push_back(state[4]);
     }
     std::map<std::string, std::string> style;
     style.insert(std::make_pair("c", "b"));
     style.insert(std::make_pair("marker", "*"));
-    plt::scatter(x, y, 5, style);
+    plt::scatter(x, t, 5, style);
 
     style["c"] = "r";
     style["marker"] = "*";
     x.clear();
     y.clear();
+    vx.clear();
+    vy.clear();
     t.clear();
     for (const auto &state : s_back)
     {
         x.push_back(state[0]);
         y.push_back(state[1]);
+        vx.push_back(state[2]);
+        vy.push_back(state[3]);
         t.push_back(state[4]);
     }
-    plt::scatter(x, y, 5, style);
+    plt::scatter(x, t, 5, style);
 
     plt::show();
 }
