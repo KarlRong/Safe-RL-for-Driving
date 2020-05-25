@@ -24,7 +24,9 @@ set(SOURCES
     src/doublebvp.cpp
     src/doublebvp.cpp
     src/fmt.cpp
+    src/fmtbvp.cpp
     src/world.cpp
+    src/worldbvp.cpp
 )
 
 add_executable(fmt  ${SOURCES})

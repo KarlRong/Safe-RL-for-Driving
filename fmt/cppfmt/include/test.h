@@ -14,7 +14,9 @@
 #include <boost/filesystem.hpp>
 #include "matplotlibcpp.h"
 #include "world.h"
+#include "worldbvp.h"
 #include "doubleintegrator.h"
+#include "fmtbvp.h"
 #include "fmt.h"
 #include "doublebvp.h"
 
@@ -283,3 +285,38 @@ void testDoubleBvpCost()
 
     plt::show();
 }
+
+void testFMTBvp()
+{
+    // 障碍物
+    std::vector<std::vector<double>> obstacle_set;
+    obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 0}));
+    obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 1}));
+    obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 2}));
+    obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 3}));
+    obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 4}));
+    // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 5}));
+    // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 6}));
+    // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 7}));
+    // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 8}));
+
+    double xmin = 0, xmax = 1, ymin = 0, ymax = 1, vxmin = -0.5, vxmax = 0.5, vymin = -0.5, vymax = 0.5, tmin=0, tmax=10;
+
+    std::shared_ptr<WorldBvp> world = std::make_shared<WorldBvp>(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax);
+
+    std::vector<double> s_init{0.1, 0.1, 0, 0, 1};
+    std::vector<double> s_goal{0.9, 0.9, 0, 0, 9};
+    int Nsample = 2000;
+
+    clock_t start, end;
+    start = clock();
+
+    FMTreeBvp fmt = FMTreeBvp(s_init, s_goal, Nsample, world, false);
+    fmt.solve();
+    end = clock();
+    std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
+
+    show(fmt);
+    return;
+}
+

@@ -241,7 +241,9 @@ void show_trajectory_bvp(const std::vector<double> &s0, const std::vector<double
     plt::set_zlabel("t"); // set_zlabel rather than just zlabel, in accordance with the Axes3D method
     plt::legend();
     plt::show();
-    plt::plot(t, x, style);
-    plt::plot(t, y, style);
-    plt::show();
+    // plt::plot(t, x, style);
+    // plt::plot(t, y, style);
+    // plt::show();
 }
+
+
