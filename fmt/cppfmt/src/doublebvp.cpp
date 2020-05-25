@@ -2,6 +2,7 @@
 #include <math.h>
 #include <float.h>
 #include <iostream>
+#include <algorithm>
 #include "matplotlibcpp.h"
 #include <map>
 #include <string>
@@ -87,10 +88,18 @@ std::vector<double> reachable_box_bvp(const std::vector<double> &s0, double ux, 
     xmax = vx0 * T + x0 + 0.5 * ux * T * T;
     vxmin = vx0 - ux * T;
     vxmax = vx0 + ux * T;
+    if(vxmin > vxmax)
+    {
+        std::swap(vxmin, vxmax);
+    }
     ymin = vy0 * T + y0 - 0.5 * uy * T * T;
     ymax = vy0 * T + y0 + 0.5 * uy * T * T;
     vymin = vy0 - uy * T;
     vymax = vy0 + uy * T;
+        if(vymin > vymax)
+    {
+        std::swap(vymin, vymax);
+    }
     std::vector<double> ret{xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, s0[4]};
     return ret;
 }
@@ -115,7 +124,7 @@ bool isinsideBVP(const std::vector<double> &recBox, const std::vector<double> &s
 
 reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sset, const std::vector<int> &idxset, std::vector<double> &s_c, double r, bool ForR)
 {
-    double ux = 1, uy = 1, T = 1;
+    double ux = 0.5, uy = 1, T = 1;
     std::vector<double> recBox = ForR ? forward_reachable_box_bvp(s_c, ux, uy, T) : backward_reachable_box_bvp(s_c, ux, uy, T);
     std::vector<int> idx_filter;
     std::vector<double> dist_filter, time_filter;
@@ -231,9 +240,8 @@ void show_trajectory_bvp(const std::vector<double> &s0, const std::vector<double
     plt::ylabel("y");
     plt::set_zlabel("t"); // set_zlabel rather than just zlabel, in accordance with the Axes3D method
     plt::legend();
-        plt::show();
+    plt::show();
     plt::plot(t, x, style);
     plt::plot(t, y, style);
-        plt::show();
-
+    plt::show();
 }

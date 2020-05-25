@@ -207,3 +207,75 @@ void testDoubleBvpConnect()
     // plt::show();
 }
 
+
+
+void testDoubleBvpCost()
+{
+    clock_t start, end;
+    start = clock();
+
+    // 随机点生成
+    int n = 500000;
+    std::vector<std::vector<double>> s_set;
+    std::default_random_engine e(1);
+    double xmin = -1, xmax = 1, ymin = -1, ymax = 2, vxmin = -2, vxmax = 2.5, vymin = -0.5, vymax = 2.5, tmin=0, tmax = 2;
+    std::uniform_real_distribution<double> xdis(xmin, xmax);
+    std::uniform_real_distribution<double> ydis(ymin, ymax);
+    std::uniform_real_distribution<double> vxdis(vxmin, vxmax);
+    std::uniform_real_distribution<double> vydis(vymin, vymax);
+    std::uniform_real_distribution<double> tdis(tmin, tmax);
+    for (int i = 0; i < n; ++i)
+    {
+        s_set.push_back(std::vector<double>({xdis(e), ydis(e), vxdis(e), vydis(e), tdis(e)}));
+        // s_set.push_back(std::vector<double>({0.2, 0.3, 0.5, 0.6}));
+    }
+    std::vector<double> s_c{0, 0, 0.5, 0, 1};
+    std::vector<int> idxset;
+    for (int i = 0; i < n; ++i)
+    {
+        idxset.push_back(i);
+    }
+    auto idx_cost_time_for = filter_reachable_bvp(s_set, idxset, s_c, 4, true);
+    auto idx_cost_time_back = filter_reachable_bvp(s_set, idxset, s_c, 4, false);
+
+    end = clock();
+    std::cout << "cost time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
+
+    std::vector<std::vector<double>> s_for, s_back;
+    for (const auto &idx : std::get<0>(idx_cost_time_for))
+    {
+        s_for.push_back(s_set[idx]);
+    }
+    for (const auto &idx : std::get<0>(idx_cost_time_back))
+    {
+        s_back.push_back(s_set[idx]);
+    }
+
+    // 绘出结果
+    std::vector<double> x, y, t;
+    for (const auto &state : s_for)
+    {
+        x.push_back(state[0]);
+        y.push_back(state[1]);
+        t.push_back(state[4]);
+    }
+    std::map<std::string, std::string> style;
+    style.insert(std::make_pair("c", "b"));
+    style.insert(std::make_pair("marker", "*"));
+    plt::scatter(x, y, 5, style);
+
+    style["c"] = "r";
+    style["marker"] = "*";
+    x.clear();
+    y.clear();
+    t.clear();
+    for (const auto &state : s_back)
+    {
+        x.push_back(state[0]);
+        y.push_back(state[1]);
+        t.push_back(state[4]);
+    }
+    plt::scatter(x, y, 5, style);
+
+    plt::show();
+}
