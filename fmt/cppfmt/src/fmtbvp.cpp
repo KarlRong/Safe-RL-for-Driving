@@ -10,7 +10,7 @@
 
 std::vector<int> FMTreeBvp::solve()
 {
-        clock_t start, end;
+    clock_t start, end;
     start = clock();
     auto comparator = [&](int lhs, int rhs) { return cost_[lhs] > cost_[rhs]; };
     std::make_heap(open_.begin(), open_.end(), comparator);
@@ -25,7 +25,7 @@ std::vector<int> FMTreeBvp::solve()
         // {
         //     break;
         // }
-        if(itr_ == 500)
+        if (itr_ == 500)
         {
             break;
         }
@@ -33,10 +33,12 @@ std::vector<int> FMTreeBvp::solve()
         // {
         //     show(*this);
         // }
-        if(itr_%50 == 0)
-{        std::cout << itr_ << std::endl;}
+        if (itr_ % 50 == 0)
+        {
+            std::cout << itr_ << std::endl;
+        }
     }
-                end = clock();
+    end = clock();
     std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
     if (!goalReached_)
     {
@@ -72,7 +74,7 @@ bool FMTreeBvp::extend()
     auto idx_cost_time = filter_reachable_bvp(Pset_, unvisit_, Pset_[idx_lowest], ux_limit_, uy_limit_, T_limit_, r_, true);
     for (const auto &idx_near : std::get<0>(idx_cost_time))
     {
-        auto idx_cost_time_near = filter_reachable_bvp(Pset_, open_, Pset_[idx_near], ux_limit_, uy_limit_, T_limit_, r_ , false);
+        auto idx_cost_time_near = filter_reachable_bvp(Pset_, open_, Pset_[idx_near], ux_limit_, uy_limit_, T_limit_, r_, false);
         std::vector<int> &idxset_cand = std::get<0>(idx_cost_time_near);
         std::vector<double> &distset_cand = std::get<1>(idx_cost_time_near);
         std::vector<double> &timeset_cand = std::get<2>(idx_cost_time_near);
@@ -124,7 +126,7 @@ void show(const FMTreeBvp &fmt)
     // 只绘出最后结果
     std::vector<std::vector<double>> waypoints;
     auto iter = fmt.result_.rbegin();
-    for (; iter !=  fmt.result_.rend(); ++iter)
+    for (; iter != fmt.result_.rend(); ++iter)
     {
         int idx = *iter;
         auto traj = gen_trajectory_bvp(fmt.Pset_[fmt.parent_[idx]], fmt.Pset_[idx], 20);

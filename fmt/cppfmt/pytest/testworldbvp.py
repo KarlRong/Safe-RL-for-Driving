@@ -115,32 +115,32 @@ def plotObj(obj, timestep, ax, color="blue"):
     Y = np.array([[y0, y0], [y1, y1]])
     Z = np.array([[z0, z0], [z0, z0]])
     surf = ax.plot_wireframe(X, Y, Z, color=color,
-                           linewidth=1, antialiased=True)
+                             linewidth=1, antialiased=True)
     X = np.array([[x0, x1], [x0, x1]])
     Y = np.array([[y0, y0], [y1, y1]])
     Z = np.array([[z1, z1], [z1, z1]])
     surf = ax.plot_wireframe(X, Y, Z, color=color,
-                           linewidth=1, antialiased=True)
+                             linewidth=1, antialiased=True)
     X = np.array([[x0, x0], [x0, x0]])
     Y = np.array([[y0, y1], [y0, y1]])
     Z = np.array([[z0, z0], [z1, z1]])
     surf = ax.plot_wireframe(X, Y, Z, color=color,
-                           linewidth=1, antialiased=True)
+                             linewidth=1, antialiased=True)
     X = np.array([[x1, x1], [x1, x1]])
     Y = np.array([[y0, y1], [y0, y1]])
     Z = np.array([[z0, z0], [z1, z1]])
     surf = ax.plot_wireframe(X, Y, Z, color=color,
-                           linewidth=1, antialiased=True)
+                             linewidth=1, antialiased=True)
     X = np.array([[x0, x1], [x0, x1]])
     Y = np.array([[y0, y0], [y0, y0]])
     Z = np.array([[z0, z0], [z1, z1]])
     surf = ax.plot_wireframe(X, Y, Z, color=color,
-                           linewidth=1, antialiased=True)
+                             linewidth=1, antialiased=True)
     X = np.array([[x0, x1], [x0, x1]])
     Y = np.array([[y1, y1], [y1, y1]])
     Z = np.array([[z0, z0], [z1, z1]])
     surf = ax.plot_wireframe(X, Y, Z, color=color,
-                           linewidth=1, antialiased=True)
+                             linewidth=1, antialiased=True)
 
 
 def plotWorld(world, ax):
@@ -171,7 +171,8 @@ def testWorldBvp():
     h = 0.01
     timestep = 1
 
-    world = fmtbvp.WorldBvp(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w, h)
+    world = fmtbvp.WorldBvp(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w,
+                            h)
     N = 3000
     s_set = np.empty((N, 5))
     s_set[:, 0] = np.random.default_rng().uniform(low=xmin, high=xmax, size=N)
@@ -272,7 +273,8 @@ def testFmtBvp():
     h = 0.01
     timestep = 1
 
-    world = fmtbvp.WorldBvp(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w, h)
+    world = fmtbvp.WorldBvp(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w,
+                            h)
     N = 4000
     s_init = [0.1, 0.1, 0, 0, 1]
     s_goal = [2.9, 2.9, 0, 0, 9]
@@ -288,6 +290,7 @@ def testFmtBvp():
     ax = fig.add_subplot(111, projection='3d')
     plotFmt(fmt, ax)
     plt.show()
+
 
 def testFmtBvpRoad():
     obstacle_set = []
@@ -329,20 +332,21 @@ def testFmtBvpRoad():
     vymax = 2
     tmin = 0
     tmax = 2.5
-    w = 4 # ego形状
+    w = 4  # ego形状
     h = 2.5
     timestep = 0.2
 
-    world = fmtbvp.WorldBvp(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w, h)
+    world = fmtbvp.WorldBvp(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w,
+                            h)
     N = 800
-    s_init = [5, 1.7, 7, 0, 0]
-    s_goal = [22.5, 1.7, 7, 0, 2.5]
+    s_init = [8, 1.7, 7, 0, 0]
+    s_goal = [27.5, 4.7, 7, 0, 2.5]
 
     fmt = fmtbvp.FMTreeBvp(s_init, s_goal, N, world, False)
-    fmt.ux_limit = 300
-    fmt.uy_limit = 100
-    fmt.T_limit = 100
-    fmt.r = 1100
+    fmt.ux_limit = 5
+    fmt.uy_limit = 5
+    fmt.T_limit =5
+    fmt.r = 200
     fmt.solve()
     print(fmt.getResult())
     fig = plt.figure()
@@ -356,7 +360,6 @@ def testFmtBvpRoad():
     ax.set_zlabel("t")
     # ax.set_aspect('equal')
     plt.show()
-
 
 
 if __name__ == "__main__":
