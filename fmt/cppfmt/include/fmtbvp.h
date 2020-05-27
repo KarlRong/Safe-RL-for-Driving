@@ -12,11 +12,11 @@ class FMTreeBvp
     friend void show(const FMTreeBvp &fmt);
 
 public:
-    FMTreeBvp(const std::vector<double> &s_init, const std::vector<double> &s_goal, int N, std::shared_ptr<WorldBvp> world, bool draw = false) : s_init_(s_init),
-                                                                                                                                           s_goal_(s_goal),
-                                                                                                                                           N_(N),
-                                                                                                                                           world_(world),
-                                                                                                                                           draw_(draw)
+    FMTreeBvp(const std::vector<double> &s_init, const std::vector<double> &s_goal, int N, std::shared_ptr<WorldBvp> world, bool draw = false) : world_(world), s_init_(s_init),
+                                                                                                                                                 s_goal_(s_goal),
+                                                                                                                                                 N_(N),
+
+                                                                                                                                                 draw_(draw)
     {
         Pset_.push_back(s_init_);
         for (int i = 1; i < N_ - 1; ++i)
@@ -43,11 +43,16 @@ public:
     {
         return goalReached_;
     };
+    std::shared_ptr<WorldBvp> world_;
+    double ux_limit_ = 1;
+    double uy_limit_ = 1;
+    double T_limit_ = 1;
+    double r_ = 10;
 
-private:
-    bool extend();
     std::vector<double> s_init_;
     std::vector<double> s_goal_;
+    int N_ = 0;
+    bool draw_ = false;
     std::vector<std::vector<double>> Pset_;
     std::vector<double> cost_;
     std::vector<double> time_;
@@ -55,9 +60,9 @@ private:
     std::list<int> unvisit_;
     std::vector<int> open_;
     std::list<int> closed_;
-    int N_ = 0;
-    std::shared_ptr<WorldBvp> world_;
-    bool draw_ = false;
+
+private:
+    bool extend();
     int itr_ = 0;
 
     std::vector<int> result_;

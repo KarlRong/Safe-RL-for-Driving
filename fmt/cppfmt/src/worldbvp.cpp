@@ -1,6 +1,9 @@
 #include "worldbvp.h"
 #include "fcl_utility.h"
 #include "matplotlibcpp.h"
+#include "pybind11/pybind11.h"
+#include "pybind11/stl.h"
+
 
 std::vector<double> WorldBvp::randomSample()
 {
@@ -75,3 +78,4 @@ bool WorldBvp::isValidStates(const std::vector<std::vector<double>> &states)
     delete statesManager;
     return !collision;
 }
+

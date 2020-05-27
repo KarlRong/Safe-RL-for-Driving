@@ -15,6 +15,7 @@ endif()
 find_package(ccd QUIET)
 find_package(fcl REQUIRED)
 find_package(Eigen3 3.0.5 QUIET CONFIG)
+find_package(pybind11 REQUIRED)
 
 find_package(Python2 COMPONENTS Development NumPy)
 
@@ -40,7 +41,31 @@ target_include_directories(fmt
         ${Python2_INCLUDE_DIRS} 
 )
 
+
 target_link_libraries( fmt
+    PRIVATE
+        # Boost::filesystem
+        ${Boost_LIBRARIES}
+        # ${fcl_LIBRARIES}
+        fcl
+        ${CCD_LIBRARIES}
+        ${EIGEN3_LIBRARIES}
+        ${M_LIBRARY}
+        Python2::Python 
+)
+
+project(fmtbvp)
+pybind11_add_module(fmtbvp ${SOURCES} pybind/pybind.cpp)
+
+target_include_directories(fmtbvp
+    PRIVATE 
+        ${PROJECT_SOURCE_DIR}/include
+        ${FCL_INCLUDE_DIRS}
+        ${CCD_INCLUDE_DIRS}
+        ${EIGEN3_INCLUDE_DIR}
+        ${Python2_INCLUDE_DIRS} 
+)
+target_link_libraries( fmtbvp
     PRIVATE
         # Boost::filesystem
         ${Boost_LIBRARIES}

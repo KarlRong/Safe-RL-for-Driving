@@ -235,8 +235,8 @@ void testDoubleBvpCost()
     {
         idxset.push_back(i);
     }
-    auto idx_cost_time_for = filter_reachable_bvp(s_set, idxset, s_c, 4, true);
-    auto idx_cost_time_back = filter_reachable_bvp(s_set, idxset, s_c, 4, false);
+    auto idx_cost_time_for = filter_reachable_bvp(s_set, idxset, s_c, 1, 1, 1, 4, true);
+    auto idx_cost_time_back = filter_reachable_bvp(s_set, idxset, s_c, 1, 1, 1, 4, false);
 
     end = clock();
     std::cout << "cost time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;

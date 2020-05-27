@@ -6,9 +6,12 @@
 #include <string>
 #include "matplotlibcpp.h"
 #include "doublebvp.h"
+#include <time.h>
 
 std::vector<int> FMTreeBvp::solve()
 {
+        clock_t start, end;
+    start = clock();
     auto comparator = [&](int lhs, int rhs) { return cost_[lhs] > cost_[rhs]; };
     std::make_heap(open_.begin(), open_.end(), comparator);
     while (true)
@@ -18,7 +21,11 @@ std::vector<int> FMTreeBvp::solve()
         {
             break;
         }
-        if (goalReached_)
+        // if (goalReached_)
+        // {
+        //     break;
+        // }
+        if(itr_ == 500)
         {
             break;
         }
@@ -26,8 +33,11 @@ std::vector<int> FMTreeBvp::solve()
         // {
         //     show(*this);
         // }
-        std::cout << itr_ << std::endl;
+        if(itr_%50 == 0)
+{        std::cout << itr_ << std::endl;}
     }
+                end = clock();
+    std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
     if (!goalReached_)
     {
         std::cout << "fmt failed" << std::endl;
@@ -49,8 +59,6 @@ std::vector<int> FMTreeBvp::solve()
 
 bool FMTreeBvp::extend()
 {
-    double r = 10;
-
     auto comparator = [&](int lhs, int rhs) { return cost_[lhs] > cost_[rhs]; };
     int idx_lowest = 0;
     if (!open_.empty())
@@ -61,10 +69,10 @@ bool FMTreeBvp::extend()
     {
         return false;
     }
-    auto idx_cost_time = filter_reachable_bvp(Pset_, unvisit_, Pset_[idx_lowest], r, true);
+    auto idx_cost_time = filter_reachable_bvp(Pset_, unvisit_, Pset_[idx_lowest], ux_limit_, uy_limit_, T_limit_, r_, true);
     for (const auto &idx_near : std::get<0>(idx_cost_time))
     {
-        auto idx_cost_time_near = filter_reachable_bvp(Pset_, open_, Pset_[idx_near], r, false);
+        auto idx_cost_time_near = filter_reachable_bvp(Pset_, open_, Pset_[idx_near], ux_limit_, uy_limit_, T_limit_, r_ , false);
         std::vector<int> &idxset_cand = std::get<0>(idx_cost_time_near);
         std::vector<double> &distset_cand = std::get<1>(idx_cost_time_near);
         std::vector<double> &timeset_cand = std::get<2>(idx_cost_time_near);
@@ -86,7 +94,7 @@ bool FMTreeBvp::extend()
         }
         int idx_parent = idxset_cand[idx_costmin];
         double time_near = timeset_cand[idx_costmin];
-        auto waypoints = gen_trajectory_bvp(Pset_[idx_parent], Pset_[idx_near], 100);
+        auto waypoints = gen_trajectory_bvp(Pset_[idx_parent], Pset_[idx_near], 5);
         if (world_->isValidStates(waypoints))
         {
             unvisit_.remove(idx_near);

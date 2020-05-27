@@ -122,9 +122,8 @@ bool isinsideBVP(const std::vector<double> &recBox, const std::vector<double> &s
     return inside and timeSeq;
 }
 
-reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sset, const std::vector<int> &idxset, std::vector<double> &s_c, double r, bool ForR)
+reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sset, const std::vector<int> &idxset, std::vector<double> &s_c, double ux, double uy, double T, double r, bool ForR)
 {
-    double ux = 1, uy = 1, T = 1;
     std::vector<double> recBox = ForR ? forward_reachable_box_bvp(s_c, ux, uy, T) : backward_reachable_box_bvp(s_c, ux, uy, T);
     std::vector<int> idx_filter;
     std::vector<double> dist_filter, time_filter;
@@ -143,9 +142,8 @@ reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sse
     }
     return std::make_tuple(idx_filter, dist_filter, time_filter);
 }
-reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sset, const std::list<int> &idxset, std::vector<double> &s_c, double r, bool ForR)
+reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sset, const std::list<int> &idxset, std::vector<double> &s_c, double ux, double uy, double T, double r, bool ForR)
 {
-    double ux = 1, uy = 1, T = 1;
     std::vector<double> recBox = ForR ? forward_reachable_box_bvp(s_c, ux, uy, T) : backward_reachable_box_bvp(s_c, ux, uy, T);
     std::vector<int> idx_filter;
     std::vector<double> dist_filter, time_filter;
