@@ -13,7 +13,7 @@
 
 namespace plt = matplotlibcpp;
 
-int main(int argc, char **argv)
+int main()
 {
     clock_t start, end;
     start = clock();
@@ -24,10 +24,11 @@ int main(int argc, char **argv)
     // testFMT();
     // testDoubleBvpConnect();
     // testDoubleBvpCost();
-    testFMTBvp();
+    // testFMTBvp();
+    testProposotionWorld();
+    // testFMTLTL();
 
     end = clock();
     std::cout << "Run time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
     return 0;
 }
- 
