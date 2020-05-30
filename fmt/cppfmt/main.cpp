@@ -25,7 +25,8 @@ int main()
     // testDoubleBvpConnect();
     // testDoubleBvpCost();
     // testFMTBvp();
-    testProposotionWorld();
+    // testProposotionWorld();
+    testProposotionLTL();
     // testFMTLTL();
 
     end = clock();

@@ -168,19 +168,21 @@ std::vector<unsigned int> WorldLTL::setNearbyVehIds(const std::vector<double> &s
 
     for (const auto &veh : vehs_)
     {
-    std::vector<double> s0 = vehs_[veh.first].states_[idx_time];
-
-        if (isFrontLTL(state, s0))
+        std::vector<double> s0 = vehs_[veh.first].states_[idx_time];
+        if (road_.roads_[0].isInside(s0) or road_.roads_[1].isInside(s0)) //只考虑下方两车道的车作为目标
         {
-            front_list.push_back(veh.first);
-        }
-        if (isRightLTL(state, s0))
-        {
-            right_list.push_back(veh.first);
-        }
-        if (isLeftLTL(state, s0))
-        {
-            left_list.push_back(veh.first);
+            if (isFrontLTL(state, s0))
+            {
+                front_list.push_back(veh.first);
+            }
+            if (isRightLTL(state, s0))
+            {
+                right_list.push_back(veh.first);
+            }
+            if (isLeftLTL(state, s0))
+            {
+                left_list.push_back(veh.first);
+            }
         }
     }
     frontId_ = findClosest(state, front_list);
@@ -189,23 +191,23 @@ std::vector<unsigned int> WorldLTL::setNearbyVehIds(const std::vector<double> &s
     return std::vector<unsigned int>({frontId_, rightId_, leftId_});
 }
 
-std::ostream  &operator<<(std::ostream &out, PropositionsVehLTL &pro)   
+std::ostream &operator<<(std::ostream &out, PropositionsVehLTL &pro)
 {
-    if(pro.exist)
+    if (pro.exist)
     {
-        if(pro.back)
+        if (pro.back)
         {
             out << "behind ";
         }
-        if(pro.right)
+        if (pro.right)
         {
             out << "right";
         }
-        if(pro.left)
+        if (pro.left)
         {
             out << "left";
         }
-        if(pro.fron)
+        if (pro.fron)
         {
             out << "front";
         }
@@ -214,14 +216,14 @@ std::ostream  &operator<<(std::ostream &out, PropositionsVehLTL &pro)
     {
         out << "not exist";
     }
-    
-	return out;
+
+    return out;
 }
 
-std::ostream  &operator<<(std::ostream &out, PropositionsLTL &pro)   
+std::ostream &operator<<(std::ostream &out, PropositionsLTL &pro)
 {
     out << "Roads: " << std::endl;
-    for(unsigned int i = 0; i < pro.num_roads; ++i)
+    for (unsigned int i = 0; i < pro.num_roads; ++i)
     {
         out << "road " << i << ": " << pro.occ_roads[i] << std::endl;
     }
@@ -230,7 +232,7 @@ std::ostream  &operator<<(std::ostream &out, PropositionsLTL &pro)
     out << "Left car:   " << pro.leftVeh << std::endl;
     out << "Right car:  " << pro.rightVeh << std::endl;
     out << "Right direction: " << pro.direction;
-	return out;
+    return out;
 }
 
 PropositionsVehLTL WorldLTL::getVehPro(const std::vector<double> &state, unsigned int vehId)

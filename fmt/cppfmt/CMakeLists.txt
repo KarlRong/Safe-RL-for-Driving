@@ -30,6 +30,7 @@ set(SOURCES
     src/world.cpp
     src/worldbvp.cpp
     src/worldltl.cpp
+    src/wfaltl.cpp
 )
 
 add_executable(fmt  ${SOURCES})
