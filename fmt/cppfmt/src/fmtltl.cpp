@@ -110,7 +110,7 @@ bool FMTreeLTL::extend()
             std::push_heap(begin(open_), end(open_), comparator);
             cost_[idx_near] = min_cost_near;
             cost_ltl_[idx_near] = cost_ltl_[idx_parent] + costltl;
-            cost_speed_[idx_near] = cost_ltl_[idx_parent] + costS;
+            cost_speed_[idx_near] = cost_speed_[idx_parent] + costS;
             Wfa_states_[idx_near] = wfa_state;
             parent_[idx_near] = idx_parent;
             if (idx_near == N_ - 1)
@@ -173,6 +173,7 @@ int FMTreeLTL::decideFromOpen()
             idx_ret = idx;
         }
     }
+    cost_ltl_[idx_ret] += min_dis; // open点距离终点的距离加到ltl的cost中
     return idx_ret;
 }
 
@@ -181,7 +182,7 @@ cost_wfa_ltl FMTreeLTL::cost_optimal_ltl(const std::vector<double> &s0, const st
     auto costCont_time = cost_optimal_bvp(s0, s1);
 
     auto wfaState_costLtl = wfas_.getNextStates(wfa_s0, world_->getProposition(s1));
-    return cost_wfa_ltl(costCont_time[0], wfaState_costLtl.second, wfaState_costLtl.first);
+    return cost_wfa_ltl(costCont_time[0], ltl_factor * wfaState_costLtl.second, wfaState_costLtl.first);
 }
 
 reachFilter_ltl FMTreeLTL::filter_reachable_ltl(const std::vector<int> &idxset, int idx_c, double ux, double uy, double T, double r, bool ForR)
@@ -211,7 +212,7 @@ reachFilter_ltl FMTreeLTL::filter_reachable_ltl(const std::vector<int> &idxset, 
                 costltl = wfaState_costLtl.second;
             }
             costltl = ltl_factor * costltl;
-            double costSpeed = speed_factor * (std::abs(Pset_[idx][3] - exp_speed_) + std::abs(Pset_[idx_c][3] - exp_speed_));
+            double costSpeed = speed_factor * (std::abs(Pset_[idx][2] - exp_speed_) + std::abs(Pset_[idx_c][2] - exp_speed_));
             if (cost_t[0] + ltl_factor * costltl  + costSpeed< r)
             {
                 idx_filter.push_back(idx);

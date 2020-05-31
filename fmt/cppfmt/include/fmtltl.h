@@ -54,7 +54,7 @@ public:
         auto state_cost = wfas_.getNextStates(wfas_.getInitialStates(), world->getProposition(s_init_));
         Wfa_states_[0] = state_cost.first;
         cost_ltl_[0] = state_cost.second * ltl_factor;
-        cost_speed_[0] =  std::abs(Pset_[0][3] - exp_speed_) * speed_factor;
+        cost_speed_[0] =  std::abs(Pset_[0][2] - exp_speed_) * speed_factor;
     };
 
     std::pair<std::vector<int>, double> solve();

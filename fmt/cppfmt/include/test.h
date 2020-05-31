@@ -597,15 +597,15 @@ void testFMTLTL()
 
     WfaLTLs wfas;
     wfas.addWfa(std::shared_ptr<WfaLTL>(new SwitchlaneLTL()));
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LanekeepLTL())); // 18
-    wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftTakeLTL())); // 1.6
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftGiveLTL())); // 18
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightGiveLTL())); // 1.6
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LanekeepLTL())); 
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftTakeLTL())); 
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftGiveLTL())); 
+    wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightGiveLTL())); 
     // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightTakeLTL()));
 
     int Nsample = 1200;
-    double exp_velo = 3; // 期待速度
-    unsigned int lc = 1; // 保持，左变道，右变道
+    double exp_velo = 7.5; // 期待速度
+    unsigned int lc = 2; // 保持，左变道，右变道
     FMTreeLTL fmt = FMTreeLTL(s_init, exp_velo, lc, Nsample, world, wfas, false);
     fmt.ux_limit_ = 5;
     fmt.uy_limit_ = 5;
