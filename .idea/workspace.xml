@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/include/test.h" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/include/test.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/src/worldltl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/src/worldltl.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning/python/fmt.py" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning/python/fmt.py" afterDir="false" />
     </list>

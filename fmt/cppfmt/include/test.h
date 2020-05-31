@@ -479,6 +479,7 @@ void testProposotionLTL()
     double timestep = 0.2;
     bool traffic_light = false;
 
+
     std::shared_ptr<WorldLTL> world = std::make_shared<WorldLTL>(vehs, humans, roadLtl, traffic_light, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w, h);
     std::vector<double> s_init({8, 1.7, 7, 0, 0});
     std::vector<double> s_goal({27.5, 4.7, 7, 0, 2.5});
@@ -492,7 +493,16 @@ void testProposotionLTL()
     clock_t start, end;
     start = clock();
 
-    FMTreeLTL fmt = FMTreeLTL(s_init, s_goal, Nsample, world, false);
+    WfaLTLs wfas;
+    wfas.addWfa(std::shared_ptr<WfaLTL>(new SwitchlaneLTL()));
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LanekeepLTL())); // 18
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftTakeLTL())); // 1.6
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftGiveLTL())); // 18
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightGiveLTL())); // 1.6
+    wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightTakeLTL()));
+
+
+    FMTreeLTL fmt = FMTreeLTL(s_init, s_goal, Nsample, world, wfas, false);
     fmt.ux_limit_ = 5;
     fmt.uy_limit_ = 5;
     fmt.T_limit_ = 5;
@@ -505,23 +515,18 @@ void testProposotionLTL()
     std::vector<std::vector<double>> waypoints;
     auto result = fmt.getResult();
     auto iter = result.rbegin();
+    std::cout << "cost: " << std::endl;
     for (; iter != result.rend(); ++iter)
     {
         int idx = *iter;
+        std::cout <<"idx: " << idx << " " <<  fmt.cost_[idx] << " ";
         auto traj = gen_trajectory_bvp(fmt.Pset_[fmt.parent_[idx]], fmt.Pset_[idx], 3);
         for (const auto &state : traj)
         {
             waypoints.push_back(state);
         }
     }
-
-    WfaLTLs wfas;
-    wfas.addWfa(std::shared_ptr<WfaLTL>(new SwitchlaneLTL()));
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LanekeepLTL())); // 18
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftTakeLTL())); // 1.6
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftGiveLTL())); // 18
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightGiveLTL())); // 1.6
-    wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightTakeLTL()));
+    std::cout << std::endl;
 
     std::vector<unsigned int> wfa_states = wfas.getInitialStates();
     double cost = 0;

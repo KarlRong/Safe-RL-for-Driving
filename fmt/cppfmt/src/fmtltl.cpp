@@ -71,13 +71,14 @@ bool FMTreeLTL::extend()
     {
         return false;
     }
-    auto idx_cost_time = filter_reachable_bvp(Pset_, unvisit_, Pset_[idx_lowest], ux_limit_, uy_limit_, T_limit_, r_, true);
-    for (const auto &idx_near : std::get<0>(idx_cost_time))
+    auto idx_Wfastates_costCon_costLTL = filter_reachable_ltl(Pset_, Wfa_states_, unvisit_, Pset_[idx_lowest], ux_limit_, uy_limit_, T_limit_, r_, true); // 前后 reac box返回的 wfa_states不是同一个概念...
+    for (const auto &idx_near : std::get<0>(idx_Wfastates_costCon_costLTL))
     {
-        auto idx_cost_time_near = filter_reachable_bvp(Pset_, open_, Pset_[idx_near], ux_limit_, uy_limit_, T_limit_, r_, false);
-        std::vector<int> &idxset_cand = std::get<0>(idx_cost_time_near);
-        std::vector<double> &distset_cand = std::get<1>(idx_cost_time_near);
-        std::vector<double> &timeset_cand = std::get<2>(idx_cost_time_near);
+        auto idx_Wfastates_costCon_costLTL_near = filter_reachable_ltl(Pset_, Wfa_states_, open_, Pset_[idx_near], ux_limit_, uy_limit_, T_limit_, r_, false);
+        std::vector<int> &idxset_cand = std::get<0>(idx_Wfastates_costCon_costLTL_near);
+        std::vector<std::vector<unsigned int>> &wfa_states_cand = std::get<1>(idx_Wfastates_costCon_costLTL_near);
+        std::vector<double> &costcont_cand = std::get<2>(idx_Wfastates_costCon_costLTL_near);
+        std::vector<double> &costLtl_cand = std::get<3>(idx_Wfastates_costCon_costLTL_near);
         if (idxset_cand.size() == 0)
         {
             continue;
@@ -85,25 +86,28 @@ bool FMTreeLTL::extend()
 
         double min_cost_near = DBL_MAX;
         int idx_costmin = 0;
-        for (unsigned int i_near_cost = 0; i_near_cost < distset_cand.size(); ++i_near_cost)
+        for (unsigned int i_near_cost = 0; i_near_cost < idxset_cand.size(); ++i_near_cost)
         {
-            double cost_near = cost_[idxset_cand[i_near_cost]] + distset_cand[i_near_cost];
+            double cost_near = cost_[idxset_cand[i_near_cost]] + costcont_cand[i_near_cost] + costLtl_cand[i_near_cost];
             if (cost_near < min_cost_near)
             {
                 min_cost_near = cost_near;
                 idx_costmin = i_near_cost;
             }
         }
+        // 更新 unvisit, open, cost, costltl, wfa_state, parent
         int idx_parent = idxset_cand[idx_costmin];
-        double time_near = timeset_cand[idx_costmin];
-        auto waypoints = gen_trajectory_bvp(Pset_[idx_parent], Pset_[idx_near], 5);
+        std::vector<unsigned int> wfa_state = wfa_states_cand[idx_costmin];
+        double costltl = costLtl_cand[idx_costmin];
+        auto waypoints = gen_trajectory_bvp(Pset_[idx_parent], Pset_[idx_near], 5); // waypoints的ltl cost被忽略，出于速度和代码简化
         if (world_->isValidStates(waypoints))
         {
             unvisit_.remove(idx_near);
             open_.push_back(idx_near);
             std::push_heap(begin(open_), end(open_), comparator);
             cost_[idx_near] = min_cost_near;
-            time_[idx_near] = time_near;
+            cost_ltl_[idx_near] = costltl;
+            Wfa_states_[idx_near] = wfa_state;
             parent_[idx_near] = idx_parent;
             if (idx_near == N_ - 1)
             {

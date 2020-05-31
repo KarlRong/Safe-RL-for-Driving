@@ -5,6 +5,9 @@
 #include "pybind11/stl.h"
 #include <float.h>
 #include <math.h>
+#include "doublebvp.h"
+
+
 
 std::vector<double> WorldLTL::randomSample()
 {
@@ -292,3 +295,31 @@ std::vector<PropositionsLTL> WorldLTL::getPropositions(const std::vector<std::ve
     }
     return ret;
 }
+
+
+cost_wfa_ltl cost_optimal_ltl(const std::vector<double> &s0, const std::vector<double> &wfa_s0, const std::vector<double> &s1)
+{
+    auto ret = cost_optimal_bvp(s0, s1);
+    return cost_wfa_ltl(ret[0], 0, wfa_s0);
+}
+reachFilter_ltl filter_reachable_ltl(const std::vector<std::vector<double>> &Sset, const std::vector<std::vector<unsigned int>> &Wfaset, const std::vector<int> &idxset, std::vector<double> &s_c, double ux, double uy, double T, double r, bool ForR)
+{
+    auto ret = filter_reachable_bvp(Sset, idxset, s_c, ux, uy, T, r, ForR);
+    unsigned int size_ret = std::get<0>(ret).size();
+    unsigned int size_wfastate = Wfaset[0].size();
+    std::vector<std::vector<unsigned int>> retWfa_states = std::vector<std::vector<unsigned int>>(size_ret, std::vector<unsigned int>(size_wfastate, 0));
+    std::vector<double> retCost_ltl = std::vector<double>(size_ret, 0);
+    return reachFilter_ltl( std::get<0>(ret), retWfa_states, std::get<1>(ret), retCost_ltl);
+}
+
+reachFilter_ltl filter_reachable_ltl(const std::vector<std::vector<double>> &Sset, const std::vector<std::vector<unsigned int>> &Wfaset, const std::list<int> &idxset, std::vector<double> &s_c, double ux, double uy, double T, double r, bool ForR)
+{
+    auto ret = filter_reachable_bvp(Sset, idxset, s_c, ux, uy, T, r, ForR);
+    unsigned int size_ret = std::get<0>(ret).size();
+    unsigned int size_wfastate = Wfaset[0].size();
+    std::vector<std::vector<unsigned int>> retWfa_states = std::vector<std::vector<unsigned int>>(size_ret, std::vector<unsigned int>(size_wfastate, 0));
+    std::vector<double> retCost_ltl = std::vector<double>(size_ret, 0);
+    return reachFilter_ltl( std::get<0>(ret), retWfa_states, std::get<1>(ret), retCost_ltl);
+}
+
+
