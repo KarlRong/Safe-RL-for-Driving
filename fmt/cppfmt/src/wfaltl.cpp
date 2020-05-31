@@ -349,7 +349,7 @@ std::pair<unsigned int, double> LcLeftTakeLTL::getNextState(unsigned int cur, co
                 if (pro.leftVeh.right)
                 {
                     next_state = 1;
-                    cost = 0;
+                    cost = cost_stay;
                 }
                 else if (pro.leftVeh.fron)
                 {
@@ -517,7 +517,7 @@ std::pair<unsigned int, double> LcLeftGiveLTL::getNextState(unsigned int cur, co
                 if (pro.leftVeh.right)
                 {
                     next_state = 1;
-                    cost = 0;
+                    cost = cost_stay;
                 }
                 else if (pro.leftVeh.back)
                 {
@@ -685,7 +685,7 @@ std::pair<unsigned int, double> LcRightTakeLTL::getNextState(unsigned int cur, c
                 if (pro.rightVeh.left)
                 {
                     next_state = 1;
-                    cost = 0;
+                    cost = cost_stay;
                 }
                 else if (pro.rightVeh.fron)
                 {
@@ -853,7 +853,7 @@ std::pair<unsigned int, double> LcRightGiveLTL::getNextState(unsigned int cur, c
                 if (pro.rightVeh.left)
                 {
                     next_state = 1;
-                    cost = 0;
+                    cost = cost_stay;
                 }
                 else if (pro.rightVeh.back)
                 {

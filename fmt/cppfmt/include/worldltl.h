@@ -10,6 +10,7 @@
 #include <time.h>
 #include <utility>
 #include <climits>
+// #include "wfaltl.h"
 
 class RoadBoxLTL
 {
@@ -25,8 +26,6 @@ public:
     {
         return (xmin_ < s[0] and s[0] < xmax_) and (ymin_ < s[1] and s[1] < ymax_);
     }
-
-private:
     double xmin_ = 0;
     double xmax_ = 0;
     double ymin_ = 0;
@@ -229,10 +228,3 @@ bool isFrontLTL(const std::vector<double> &s0, const std::vector<double> &s1);
 bool isRightLTL(const std::vector<double> &s0, const std::vector<double> &s1);
 bool isBackLTL(const std::vector<double> &s0, const std::vector<double> &s1);
 bool isLeftLTL(const std::vector<double> &s0, const std::vector<double> &s1);
-
-
-typedef std::tuple<std::vector<int>,  std::vector<std::vector<unsigned int>>, std::vector<double>, std::vector<double>> reachFilter_ltl; // idx, wfa_states, cost_control, cost_ltl
-typedef std::tuple<double, double, std::vector<double>> cost_wfa_ltl; // cost_control, cost_ltl, wfa_states
-cost_wfa_ltl cost_optimal_ltl(const std::vector<double> &s0, const std::vector<double> &wfa_s0, const std::vector<double> &s1);  
-reachFilter_ltl filter_reachable_ltl(const std::vector<std::vector<double>> &Sset, const std::vector<std::vector<unsigned int>> &Wfaset, const std::vector<int> &idxset, std::vector<double> &s_c, double ux, double uy, double T, double r, bool ForR);
-reachFilter_ltl filter_reachable_ltl(const std::vector<std::vector<double>> &Sset, const std::vector<std::vector<unsigned int>> &Wfaset, const std::list<int> &idxset, std::vector<double> &s_c, double ux, double uy, double T, double r, bool ForR);

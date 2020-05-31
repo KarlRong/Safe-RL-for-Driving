@@ -7,8 +7,10 @@
 #include "matplotlibcpp.h"
 #include "doublebvp.h"
 #include <time.h>
+#include "worldltl.h"
+#include "doublebvp.h"
 
-std::vector<int> FMTreeLTL::solve()
+std::pair<std::vector<int>, double> FMTreeLTL::solve()
 {
     clock_t start, end;
     start = clock();
@@ -21,30 +23,29 @@ std::vector<int> FMTreeLTL::solve()
         {
             break;
         }
-        // if (goalReached_)
-        // {
-        //     break;
-        // }
-        if (itr_ == 500)
+        if (goalReached_)
         {
             break;
         }
-        // if (draw_ and itr_ % 20 == 0)
-        // {
-        //     show(*this);
-        // }
+        if (itr_ == N_/2)
+        {
+            break;
+        }
         if (itr_ % 50 == 0)
         {
             std::cout << itr_ << std::endl;
         }
     }
+
     end = clock();
     std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
+    int idx = N_ - 1;
     if (!goalReached_)
     {
-        std::cout << "fmt failed" << std::endl;
+        std::cout << "fmt failed to reach goal" << std::endl;
+        idx = decideFromOpen();
     }
-    int idx = N_ - 1;
+    double costltl = cost_ltl_[idx];
     std::vector<int> idx_solution({idx});
     while (true)
     {
@@ -56,7 +57,7 @@ std::vector<int> FMTreeLTL::solve()
         }
     }
     result_ = idx_solution;
-    return idx_solution;
+    return std::pair<std::vector<int>, double>(idx_solution, costltl);
 }
 
 bool FMTreeLTL::extend()
@@ -71,14 +72,15 @@ bool FMTreeLTL::extend()
     {
         return false;
     }
-    auto idx_Wfastates_costCon_costLTL = filter_reachable_ltl(Pset_, Wfa_states_, unvisit_, Pset_[idx_lowest], ux_limit_, uy_limit_, T_limit_, r_, true); // 前后 reac box返回的 wfa_states不是同一个概念...
-    for (const auto &idx_near : std::get<0>(idx_Wfastates_costCon_costLTL))
+    auto idx_Wfastates_costCon_costLTL_costS = filter_reachable_ltl(unvisit_, idx_lowest, ux_limit_, uy_limit_, T_limit_, r_, true); // 前后 reac box返回的 wfa_states不是同一个概念...
+    for (const auto &idx_near : std::get<0>(idx_Wfastates_costCon_costLTL_costS))
     {
-        auto idx_Wfastates_costCon_costLTL_near = filter_reachable_ltl(Pset_, Wfa_states_, open_, Pset_[idx_near], ux_limit_, uy_limit_, T_limit_, r_, false);
-        std::vector<int> &idxset_cand = std::get<0>(idx_Wfastates_costCon_costLTL_near);
-        std::vector<std::vector<unsigned int>> &wfa_states_cand = std::get<1>(idx_Wfastates_costCon_costLTL_near);
-        std::vector<double> &costcont_cand = std::get<2>(idx_Wfastates_costCon_costLTL_near);
-        std::vector<double> &costLtl_cand = std::get<3>(idx_Wfastates_costCon_costLTL_near);
+        auto idx_Wfastates_costCon_costLTL_costS_near = filter_reachable_ltl(open_, idx_near, ux_limit_, uy_limit_, T_limit_, r_, false);
+        std::vector<int> &idxset_cand = std::get<0>(idx_Wfastates_costCon_costLTL_costS_near);
+        std::vector<std::vector<unsigned int>> &wfa_states_cand = std::get<1>(idx_Wfastates_costCon_costLTL_costS_near);
+        std::vector<double> &costcont_cand = std::get<2>(idx_Wfastates_costCon_costLTL_costS_near);
+        std::vector<double> &costLtl_cand = std::get<3>(idx_Wfastates_costCon_costLTL_costS_near);
+        std::vector<double> &costS_cand = std::get<4>(idx_Wfastates_costCon_costLTL_costS_near);
         if (idxset_cand.size() == 0)
         {
             continue;
@@ -88,7 +90,7 @@ bool FMTreeLTL::extend()
         int idx_costmin = 0;
         for (unsigned int i_near_cost = 0; i_near_cost < idxset_cand.size(); ++i_near_cost)
         {
-            double cost_near = cost_[idxset_cand[i_near_cost]] + costcont_cand[i_near_cost] + costLtl_cand[i_near_cost];
+            double cost_near = cost_[idxset_cand[i_near_cost]] + costcont_cand[i_near_cost] + costLtl_cand[i_near_cost] + costS_cand[i_near_cost]; // parent cost + 这一段cost + 这一段ltl + 这一段speed
             if (cost_near < min_cost_near)
             {
                 min_cost_near = cost_near;
@@ -99,6 +101,7 @@ bool FMTreeLTL::extend()
         int idx_parent = idxset_cand[idx_costmin];
         std::vector<unsigned int> wfa_state = wfa_states_cand[idx_costmin];
         double costltl = costLtl_cand[idx_costmin];
+        double costS = costS_cand[idx_costmin];
         auto waypoints = gen_trajectory_bvp(Pset_[idx_parent], Pset_[idx_near], 5); // waypoints的ltl cost被忽略，出于速度和代码简化
         if (world_->isValidStates(waypoints))
         {
@@ -106,7 +109,8 @@ bool FMTreeLTL::extend()
             open_.push_back(idx_near);
             std::push_heap(begin(open_), end(open_), comparator);
             cost_[idx_near] = min_cost_near;
-            cost_ltl_[idx_near] = costltl;
+            cost_ltl_[idx_near] = cost_ltl_[idx_parent] + costltl;
+            cost_speed_[idx_near] = cost_ltl_[idx_parent] + costS;
             Wfa_states_[idx_near] = wfa_state;
             parent_[idx_near] = idx_parent;
             if (idx_near == N_ - 1)
@@ -121,6 +125,147 @@ bool FMTreeLTL::extend()
     // bool_open_[idx_lowest] = false;
     // bool_closed_[idx_lowest] = true;
     return true;
+}
+
+std::vector<double> FMTreeLTL::decideGoal()
+{
+    double T = 2.5; // 规划2.2s的路
+    std::vector<double> goal = std::vector<double>({0, 0, exp_speed_, 0, T});
+    if (lc_ == 2 or (lc_ == 0 and world_->road_.roads_[0].isInside(s_init_)))
+    {
+        goal[0] = s_init_[0] + T * exp_speed_;
+        goal[1] = (world_->road_.roads_[0].ymin_ + world_->road_.roads_[0].ymax_) / 2;
+    }
+    else if (lc_ == 1 or (lc_ == 0 and world_->road_.roads_[1].isInside(s_init_)))
+    {
+        goal[0] = s_init_[0] + T * exp_speed_;
+        goal[1] = (world_->road_.roads_[1].ymin_ + world_->road_.roads_[1].ymax_) / 2;
+    }
+    else
+    {
+        goal[0] = s_init_[0] + T * exp_speed_;
+        goal[1] = (world_->road_.roads_[0].ymin_ + world_->road_.roads_[0].ymax_) / 2;
+    }
+    return goal;
+}
+
+int FMTreeLTL::decideFromOpen()
+{
+    int idx_ret = 0;
+    double min_dis = DBL_MAX;
+    for (const auto &idx : open_)
+    {
+        auto ret = cost_optimal_ltl(Pset_[idx], Wfa_states_[idx], Pset_[N_ - 1]);
+        double cost = std::get<0>(ret) + std::get<1>(ret);
+        if (cost < min_dis)
+        {
+            min_dis = cost;
+            idx_ret = idx;
+        }
+    }
+    for (const auto &idx : closed_)
+    {
+        auto ret = cost_optimal_ltl(Pset_[idx], Wfa_states_[idx], Pset_[N_ - 1]);
+        double cost = std::get<0>(ret) + std::get<1>(ret);
+        if (cost < min_dis)
+        {
+            min_dis = cost;
+            idx_ret = idx;
+        }
+    }
+    return idx_ret;
+}
+
+cost_wfa_ltl FMTreeLTL::cost_optimal_ltl(const std::vector<double> &s0, const std::vector<unsigned int> &wfa_s0, const std::vector<double> &s1)
+{
+    auto costCont_time = cost_optimal_bvp(s0, s1);
+
+    auto wfaState_costLtl = wfas_.getNextStates(wfa_s0, world_->getProposition(s1));
+    return cost_wfa_ltl(costCont_time[0], wfaState_costLtl.second, wfaState_costLtl.first);
+}
+
+reachFilter_ltl FMTreeLTL::filter_reachable_ltl(const std::vector<int> &idxset, int idx_c, double ux, double uy, double T, double r, bool ForR)
+{
+     std::vector<double> s_c = Pset_[idx_c];
+    std::vector<double> recBox = ForR ? forward_reachable_box_bvp(s_c, ux, uy, T) : backward_reachable_box_bvp(s_c, ux, uy, T);
+    std::vector<int> idx_filter;
+    std::vector<double> cost_control, cost_ltl, cost_speed;
+    std::vector<std::vector<unsigned int>> wfa_states;
+    for (const auto &idx : idxset)
+    {
+        if (isinsideBVP(recBox, Pset_[idx], ForR))
+        {
+            std::vector<double> cost_t = ForR ? cost_optimal_bvp(s_c, Pset_[idx]) : cost_optimal_bvp(Pset_[idx], s_c);
+            double costltl = 0;
+            std::vector<unsigned int> wfastate;
+            if (ForR)
+            {
+                auto wfaState_costLtl = wfas_.getNextStates(Wfa_states_[idx_c], world_->getProposition(Pset_[idx]));
+                wfastate = wfaState_costLtl.first;
+                costltl = wfaState_costLtl.second;
+            }
+            else
+            {
+                auto wfaState_costLtl = wfas_.getNextStates(Wfa_states_[idx], world_->getProposition(Pset_[idx_c]));
+                wfastate = wfaState_costLtl.first;
+                costltl = wfaState_costLtl.second;
+            }
+            costltl = ltl_factor * costltl;
+            double costSpeed = speed_factor * (std::abs(Pset_[idx][3] - exp_speed_) + std::abs(Pset_[idx_c][3] - exp_speed_));
+            if (cost_t[0] + ltl_factor * costltl  + costSpeed< r)
+            {
+                idx_filter.push_back(idx);
+                cost_control.push_back(cost_t[0]);
+                wfa_states.push_back(wfastate);
+                cost_ltl.push_back(costltl);
+                cost_speed.push_back(costSpeed);
+            }
+        }
+    }
+    return reachFilter_ltl(idx_filter, wfa_states, cost_control, cost_ltl, cost_speed);
+    // idx, wfa_states, cost_control, cost_ltl
+}
+
+reachFilter_ltl FMTreeLTL::filter_reachable_ltl(const std::list<int> &idxset, int idx_c, double ux, double uy, double T, double r, bool ForR)
+{
+     std::vector<double> s_c = Pset_[idx_c];
+    std::vector<double> recBox = ForR ? forward_reachable_box_bvp(s_c, ux, uy, T) : backward_reachable_box_bvp(s_c, ux, uy, T);
+    std::vector<int> idx_filter;
+    std::vector<double> cost_control, cost_ltl, cost_speed;
+    std::vector<std::vector<unsigned int>> wfa_states;
+    for (const auto &idx : idxset)
+    {
+        if (isinsideBVP(recBox, Pset_[idx], ForR))
+        {
+            std::vector<double> cost_t = ForR ? cost_optimal_bvp(s_c, Pset_[idx]) : cost_optimal_bvp(Pset_[idx], s_c);
+            double costltl = 0;
+            std::vector<unsigned int> wfastate;
+            if (ForR)
+            {
+                auto wfaState_costLtl = wfas_.getNextStates(Wfa_states_[idx_c], world_->getProposition(Pset_[idx]));
+                wfastate = wfaState_costLtl.first;
+                costltl = wfaState_costLtl.second;
+            }
+            else
+            {
+                auto wfaState_costLtl = wfas_.getNextStates(Wfa_states_[idx], world_->getProposition(Pset_[idx_c]));
+                wfastate = wfaState_costLtl.first;
+                costltl = wfaState_costLtl.second;
+            }
+            costltl = ltl_factor * costltl;
+            double costSpeed = speed_factor * (std::abs(Pset_[idx][3] - exp_speed_) + std::abs(Pset_[idx_c][3] - exp_speed_));
+            if (cost_t[0] + ltl_factor * costltl  + costSpeed< r)
+            {
+                idx_filter.push_back(idx);
+                cost_control.push_back(cost_t[0]);
+                wfa_states.push_back(wfastate);
+                cost_ltl.push_back(costltl);
+                cost_speed.push_back(costSpeed);
+            }
+        }
+    }
+    return reachFilter_ltl(idx_filter, wfa_states, cost_control, cost_ltl, cost_speed);
+    // idx, wfa_states, cost_control, cost_ltl
 }
 
 namespace plt = matplotlibcpp;

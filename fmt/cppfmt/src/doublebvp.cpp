@@ -56,7 +56,7 @@ std::vector<double> solveBVP(double x0, double x1, double v0, double v1, double 
     }
     else
     {
-        std::cout << "tau > T, no solution" << std::endl;
+        // std::cout << "tau > T, no solution" << std::endl;
         return std::vector<double>{DBL_MAX, 0};
     }
 

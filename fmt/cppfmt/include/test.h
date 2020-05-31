@@ -479,30 +479,30 @@ void testProposotionLTL()
     double timestep = 0.2;
     bool traffic_light = false;
 
-
     std::shared_ptr<WorldLTL> world = std::make_shared<WorldLTL>(vehs, humans, roadLtl, traffic_light, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w, h);
-    std::vector<double> s_init({8, 1.7, 7, 0, 0});
+    std::vector<double> s_init({8, 1.75, 7, 0, 0});
     std::vector<double> s_goal({27.5, 4.7, 7, 0, 2.5});
     std::vector<unsigned int> nearby = world->setNearbyVehIds(s_init); //必要
     std::cout << "front car id:" << nearby[0] << std::endl
               << "right car id:" << nearby[1] << std::endl
               << "left car id:" << nearby[2] << std::endl;
 
-    int Nsample = 800;
+    int Nsample = 1200;
 
     clock_t start, end;
     start = clock();
 
     WfaLTLs wfas;
     wfas.addWfa(std::shared_ptr<WfaLTL>(new SwitchlaneLTL()));
-    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LanekeepLTL())); // 18
+    wfas.addWfa(std::shared_ptr<WfaLTL>(new LanekeepLTL())); // 18
     // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftTakeLTL())); // 1.6
     // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftGiveLTL())); // 18
     // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightGiveLTL())); // 1.6
-    wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightTakeLTL()));
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightTakeLTL()));
 
-
-    FMTreeLTL fmt = FMTreeLTL(s_init, s_goal, Nsample, world, wfas, false);
+    double exp_velo = 6;
+    unsigned int lc = 0; // 保持，左变道，右变道
+    FMTreeLTL fmt = FMTreeLTL(s_init, exp_velo, lc, Nsample, world, wfas, false);
     fmt.ux_limit_ = 5;
     fmt.uy_limit_ = 5;
     fmt.T_limit_ = 5;
@@ -519,7 +519,7 @@ void testProposotionLTL()
     for (; iter != result.rend(); ++iter)
     {
         int idx = *iter;
-        std::cout <<"idx: " << idx << " " <<  fmt.cost_[idx] << " ";
+        std::cout << "idx: " << idx << " " << fmt.cost_[idx] << " ";
         auto traj = gen_trajectory_bvp(fmt.Pset_[fmt.parent_[idx]], fmt.Pset_[idx], 3);
         for (const auto &state : traj)
         {
@@ -536,45 +536,118 @@ void testProposotionLTL()
         pro = world->getProposition(state);
         auto ret = wfas.getNextStates(wfa_states, pro);
         wfa_states = ret.first;
-        std::cout << std::endl
-                  << pro << std::endl
-                  << "Cost: " << ret.second << std::endl;
+        // std::cout << std::endl
+        //           << pro << std::endl
+        //           << "Cost: " << ret.second << std::endl;
         cost += ret.second;
     }
     std::cout << std::endl;
     std::cout << "Total cost: " << cost << std::endl;
 }
 
-// void testFMTLTL()
-// {
-//     // 障碍物
-//     std::vector<std::vector<double>> obstacle_set;
-//     obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 0}));
-//     obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 1}));
-//     obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 2}));
-//     obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 3}));
-//     obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 4}));
-//     // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 5}));
-//     // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 6}));
-//     // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 7}));
-//     // obstacle_set.push_back(std::vector<double>({0.5, 0.5, 0.6, 0.6, 8}));
+void testFMTLTL()
+{
+    std::vector<std::vector<double>> roads;
+    roads.push_back(std::vector<double>({0, 100, 0, 3.5}));
+    roads.push_back(std::vector<double>({0, 100, 3.5, 7}));
+    roads.push_back(std::vector<double>({0, 100, 7, 10.5}));
+    roads.push_back(std::vector<double>({0, 100, 10.5, 14}));
+    std::vector<double> cross({70, 75, 0, 14});
+    RoadLTL roadLtl = RoadLTL(roads, cross);
+    std::unordered_map<unsigned int, ObjLTL> vehs;
+    std::vector<std::vector<double>> states;
+    double w = 4, h = 2.5;
+    ObjLTL obj;
+    states.push_back({15, 1.7, 0});
+    states.push_back({16.4, 1.7, 0.2});
+    states.push_back({17.8, 1.7, 0.4});
+    states.push_back({19.2, 1.7, 0.6});
+    states.push_back({20.6, 1.7, 0.8});
+    states.push_back({22, 1.7, 1});
+    states.push_back({22.4, 1.7, 1.2});
+    states.push_back({23.8, 1.7, 1.4});
+    states.push_back({25.2, 1.7, 1.6});
+    states.push_back({26.6, 1.7, 1.8});
+    states.push_back({28, 1.7, 2});
+    states.push_back({29.4, 1.7, 2});
+    states.push_back({30.8, 1.7, 2.2});
+    states.push_back({32, 1.7, 2.4});
+    obj = ObjLTL(states, w, h);
+    vehs[0] = obj;
+    for (auto &state : states)
+    {
+        state[0] = state[0] - 12;
+        state[1] = state[1] + 3.5;
+    }
+    obj = ObjLTL(states, w, h);
+    vehs[1] = obj;
+    std::vector<ObjLTL> humans;
 
-//     double xmin = 0, xmax = 1, ymin = 0, ymax = 1, vxmin = -0.5, vxmax = 0.5, vymin = -0.5, vymax = 0.5, tmin=0, tmax=10;
+    double xmin = 5, xmax = 30, ymin = 0, ymax = 7, vxmin = -2.5, vxmax = 7, vymin = -2, vymax = 2, tmin = 0, tmax = 2.5;
+    double timestep = 0.2;
+    bool traffic_light = false;
 
-//     std::shared_ptr<WorldLTL> world = std::make_shared<WorldLTL>(obstacle_set, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax);
+    std::shared_ptr<WorldLTL> world = std::make_shared<WorldLTL>(vehs, humans, roadLtl, traffic_light, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax, tmin, tmax, timestep, w, h);
+    std::vector<double> s_init({8, 1.75, 7, 0, 0});
+    std::vector<double> s_goal({27.5, 4.7, 7, 0, 2.5});
+    std::vector<unsigned int> nearby = world->setNearbyVehIds(s_init); //必要
+    std::cout << "front car id:" << nearby[0] << std::endl
+              << "right car id:" << nearby[1] << std::endl
+              << "left car id:" << nearby[2] << std::endl;
 
-//     std::vector<double> s_init{0.1, 0.1, 0, 0, 1};
-//     std::vector<double> s_goal{0.9, 0.9, 0, 0, 9};
-//     int Nsample = 2000;
+    WfaLTLs wfas;
+    wfas.addWfa(std::shared_ptr<WfaLTL>(new SwitchlaneLTL()));
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LanekeepLTL())); // 18
+    wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftTakeLTL())); // 1.6
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcLeftGiveLTL())); // 18
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightGiveLTL())); // 1.6
+    // wfas.addWfa(std::shared_ptr<WfaLTL>(new LcRightTakeLTL()));
 
-//     clock_t start, end;
-//     start = clock();
+    int Nsample = 1200;
+    double exp_velo = 3; // 期待速度
+    unsigned int lc = 1; // 保持，左变道，右变道
+    FMTreeLTL fmt = FMTreeLTL(s_init, exp_velo, lc, Nsample, world, wfas, false);
+    fmt.ux_limit_ = 5;
+    fmt.uy_limit_ = 5;
+    fmt.T_limit_ = 5;
+    fmt.r_ = 200;
+    auto ret = fmt.solve();
+    std::cout << "total cost: " << fmt.cost_[ret.first.front()] << std::endl;
+    std::cout << "total ltl cost: " << ret.second << std::endl;
+    std::cout << "total speed cost: " << fmt.cost_speed_[ret.first.front()] << std::endl;
 
-//     FMTreeLTL fmt = FMTreeLTL(s_init, s_goal, Nsample, world, false);
-//     fmt.solve();
-//     end = clock();
-//     std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
+    show(fmt);
 
-//     show(fmt);
-//     return;
-// }
+    for (const auto &idx : ret.first)
+    {
+        std::cout << "cost: " << fmt.cost_[idx] << std::endl;
+        std::cout << "ltl cost: " << fmt.cost_ltl_[idx] << std::endl;
+        std::cout << "speed cost: " << fmt.cost_speed_[idx] << std::endl;
+    }
+    // std::vector<std::vector<double>> waypoints;
+    // auto result = fmt.getResult();
+    // auto iter = result.rbegin();
+    // double ltlcost = 0;
+    // for (; iter != result.rend(); ++iter)
+    // {
+    //     int idx = *iter;
+    //     waypoints.push_back(fmt.Pset_[idx]);
+    // }
+    // std::cout << std::endl;
+
+    // std::vector<unsigned int> wfa_states = wfas.getInitialStates();
+    // double cost = 0;
+    // PropositionsLTL pro;
+    // for (const auto &state : waypoints)
+    // {
+    //     pro = world->getProposition(state);
+    //     auto ret = wfas.getNextStates(wfa_states, pro);
+    //     wfa_states = ret.first;
+    //     // std::cout << std::endl
+    //     //           << pro << std::endl
+    //     //           << "Cost: " << ret.second << std::endl;
+    //     cost += ret.second;
+    // }
+    // std::cout << std::endl;
+    // std::cout << "Total cost: " << cost << std::endl;
+}

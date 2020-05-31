@@ -18,3 +18,4 @@ reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sse
 reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sset, const std::list<int> &idxset, std::vector<double> &s_c, double ux, double uy, double T, double r, bool ForR);
 std::vector<std::vector<double>> gen_trajectory_bvp(const std::vector<double> &s0, const std::vector<double> &s1, int N_split = 10);
 void show_trajectory_bvp(const std::vector<double> &s0, const std::vector<double> &s1, int N_split = 20, std::string color = "gray", std::string linewidth = "0.4");
+bool isinsideBVP(const std::vector<double> &recBox, const std::vector<double> &s, bool ForR);
