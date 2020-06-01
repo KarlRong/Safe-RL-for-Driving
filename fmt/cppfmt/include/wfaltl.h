@@ -11,8 +11,11 @@ class WfaLTL
 {
 public:
     WfaLTL() = default;
-    virtual std::pair<unsigned int, double> getNextState(unsigned int cur, const PropositionsLTL &pro) = 0;
-    virtual double inputProposition(const PropositionsLTL& pro)
+    virtual std::pair<unsigned int, double> getNextState(unsigned int cur, const PropositionsLTL &pro)
+    {
+        return std::pair<unsigned int, double>(cur, 0);
+    }
+    virtual double inputProposition(const PropositionsLTL &pro)
     {
         std::pair<unsigned int, double> ret = getNextState(state_, pro);
         state_ = ret.first;
@@ -27,17 +30,24 @@ class WfaLTLs
 {
 public:
     std::vector<std::shared_ptr<WfaLTL>> wfas_;
-    
+
     void addWfa(std::shared_ptr<WfaLTL> wfa)
     {
         wfas_.push_back(wfa);
     }
-    double inputProposition(const PropositionsLTL& pro);
+
+    void addSwitch();
+    void addKeepLane();
+    void addLcLeftTake();
+    void addLcLeftGive();
+    void addLcRightTake();
+    void addLcRightGive();
+    double inputProposition(const PropositionsLTL &pro);
     std::vector<unsigned int> getInitialStates()
     {
         return std::vector<unsigned int>(wfas_.size(), 0);
     }
-    std::pair<std::vector<unsigned int>, double> getNextStates(const std::vector<unsigned int> & states, const PropositionsLTL & pro);
+    std::pair<std::vector<unsigned int>, double> getNextStates(const std::vector<unsigned int> &states, const PropositionsLTL &pro);
 };
 
 class SwitchlaneLTL : public WfaLTL

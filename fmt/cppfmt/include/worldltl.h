@@ -51,16 +51,16 @@ public:
         }
     }
 
-    std::pair<std::vector<bool>, bool> getProposition(std::vector<double> state)
+    std::pair<std::vector<int>, bool> getProposition(std::vector<double> state)
     {
-        std::vector<bool> occ_roads = std::vector<bool>(num_roads_, false);
-        occ_roads[num_roads_ - 1] = true; //默认在路面外
+        std::vector<int> occ_roads = std::vector<int>(num_roads_, 0);
+        occ_roads[num_roads_ - 1] = 1; //默认在路面外
         for (unsigned i = 0; i < num_roads_; ++i)
         {
             if (roads_[i].isInside(state))
             {
-                occ_roads[i] = true;
-                occ_roads[num_roads_ - 1] = false;
+                occ_roads[i] = 1;
+                occ_roads[num_roads_ - 1] = 0;
                 break;
             }
         }
@@ -88,7 +88,7 @@ class PropositionsLTL
 {
 public:
     unsigned int num_roads = 0;
-    std::vector<bool> occ_roads;
+    std::vector<int> occ_roads;
     bool occ_cross = false;
 
     PropositionsVehLTL frontVeh;

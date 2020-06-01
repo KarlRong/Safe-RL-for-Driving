@@ -155,6 +155,10 @@ int FMTreeLTL::decideFromOpen()
     double min_dis = DBL_MAX;
     for (const auto &idx : open_)
     {
+        if(idx == 0)
+        {
+            continue;
+        }
         auto ret = cost_optimal_ltl(Pset_[idx], Wfa_states_[idx], Pset_[N_ - 1]);
         double cost = std::get<0>(ret) + std::get<1>(ret);
         if (cost < min_dis)
@@ -165,6 +169,10 @@ int FMTreeLTL::decideFromOpen()
     }
     for (const auto &idx : closed_)
     {
+        if(idx == 0)
+        {
+            continue;
+        }
         auto ret = cost_optimal_ltl(Pset_[idx], Wfa_states_[idx], Pset_[N_ - 1]);
         double cost = std::get<0>(ret) + std::get<1>(ret);
         if (cost < min_dis)

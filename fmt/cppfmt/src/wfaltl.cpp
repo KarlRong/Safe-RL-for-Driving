@@ -25,14 +25,39 @@ std::pair<std::vector<unsigned int>, double> WfaLTLs::getNextStates(const std::v
     return std::pair<std::vector<unsigned int>, double>(next_states, cost);
 }
 
+    void WfaLTLs::addSwitch()
+    {
+        wfas_.push_back(std::shared_ptr<WfaLTL>(new SwitchlaneLTL()));
+    }
+    void WfaLTLs::addKeepLane()
+    {
+        wfas_.push_back(std::shared_ptr<WfaLTL>(new LanekeepLTL()));
+    }
+    void WfaLTLs::addLcLeftTake()
+    {
+        wfas_.push_back(std::shared_ptr<WfaLTL>(new LcLeftTakeLTL()));
+    }
+    void WfaLTLs::addLcLeftGive()
+    {
+        wfas_.push_back(std::shared_ptr<WfaLTL>(new LcLeftGiveLTL()));
+    }
+    void WfaLTLs::addLcRightTake()
+    {
+        wfas_.push_back(std::shared_ptr<WfaLTL>(new LcRightTakeLTL()));
+    }
+    void WfaLTLs::addLcRightGive()
+    {
+        wfas_.push_back(std::shared_ptr<WfaLTL>(new LcRightTakeLTL));
+    }
+
 std::pair<unsigned int, double> SwitchlaneLTL::getNextState(unsigned int cur, const PropositionsLTL &pro)
 {
     unsigned int next_state = cur;
     double cost = 0;
-    double c_out = 1;
-    double c_out_keep = 0.1;
-    double c_dash = 0.4;
-    double c_solid = 0.8;
+    double c_out = 2;
+    double c_out_keep = 0.3;
+    double c_dash = 0.5;
+    double c_solid = 1;
     if (pro.num_roads == 4) //限制为4车道
     {
         switch (cur)
@@ -337,8 +362,9 @@ std::pair<unsigned int, double> LcLeftTakeLTL::getNextState(unsigned int cur, co
 {
     unsigned int next_state = cur;
     double cost = 0;
-    double cost_stay = 0.1;
+    double cost_stay = 0.3;
     double cost_outrange = 3;
+    double cost_wrong = 0.8;
     if (pro.num_roads == 4) //限制为4车道
     {
         if (pro.leftVeh.exist)
@@ -505,7 +531,7 @@ std::pair<unsigned int, double> LcLeftGiveLTL::getNextState(unsigned int cur, co
 {
     unsigned int next_state = cur;
     double cost = 0;
-    double cost_stay = 0.1;
+    double cost_stay = 0.3;
     double cost_outrange = 3;
     if (pro.num_roads == 4) //限制为4车道
     {
@@ -673,7 +699,7 @@ std::pair<unsigned int, double> LcRightTakeLTL::getNextState(unsigned int cur, c
 {
     unsigned int next_state = cur;
     double cost = 0;
-    double cost_stay = 0.1;
+    double cost_stay = 0.3;
     double cost_outrange = 3;
     if (pro.num_roads == 4) //限制为4车道
     {
@@ -841,7 +867,7 @@ std::pair<unsigned int, double> LcRightGiveLTL::getNextState(unsigned int cur, c
 {
     unsigned int next_state = cur;
     double cost = 0;
-    double cost_stay = 0.1;
+    double cost_stay = 0.3;
     double cost_outrange = 3;
     if (pro.num_roads == 4) //限制为4车道
     {
