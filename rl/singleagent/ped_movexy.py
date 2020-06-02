@@ -37,7 +37,7 @@ env_params = EnvParams(
         additional_params={
             "max_accel": 3,
             "max_decel": -2,
-            "target_velocity": 20,
+            "target_velocity": 7,
             "lane_change_duration": 4,
             "num_rl": 1,
         })
@@ -51,6 +51,7 @@ vehicles.add(
     }),
     # lane_change_controller=(StaticLaneChanger, {}),
     car_following_params=SumoCarFollowingParams(
+        maxSpeed=7,
         speed_mode="obey_safe_speed",
     ),
     lane_change_params=SumoLaneChangeParams(
@@ -162,7 +163,7 @@ class PedCrossing(Network):
 
 
 flow_params = dict(
-    exp_tag='template',
+    exp_tag='ped_movexy',
     env_name=MoveXYPedEnv,
     network=PedCrossing,
     simulator='traci',
