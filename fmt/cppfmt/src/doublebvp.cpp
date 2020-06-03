@@ -166,10 +166,16 @@ reachFilter_bvp filter_reachable_bvp(const std::vector<std::vector<double>> &Sse
 std::vector<std::vector<double>> gen_trajectory_bvp(const std::vector<double> &s0, const std::vector<double> &s1, int N_split)
 {
     std::vector<std::vector<double>> waypoints;
+    waypoints.push_back(s0);
     double T = s1[4] - s0[4];
     if (T < 0)
     {
         std::cout << "s1 T < s0 T error" << std::endl;
+        return waypoints;
+    }
+    if(N_split < 1)
+    {
+        std::cout << "no split" << std::endl;
         return waypoints;
     }
     std::vector<double> u_tau_vtau_x = solveBVP(s0[0], s1[0], s0[2], s1[2], T);

@@ -172,11 +172,11 @@ def plotFmt(fmt, ax):
 
 def testFmtLTL():
     roads = []
-    roads.append([0, 100, 0, 3.5])
-    roads.append([0, 100, 3.5, 7])
-    roads.append([0, 100, 7, 10.5])
-    roads.append([0, 100, 10.5, 14])
-    cross = [70, 75, 0, 14]
+    roads.append([0, 200, 43, 46.5])
+    roads.append([0, 200, 46.5, 50])
+    roads.append([0, 200, 50, 53.5])
+    roads.append([0, 200, 53.5, 57])
+    cross = [97, 103, 43, 57]
     roadLtl = fmtltl.RoadLTL(roads, cross)
 
     vehs = {}
@@ -200,31 +200,33 @@ def testFmtLTL():
     vehs[0] = obj
     states2 = []
     for state in states:
-        states2.append([state[0] - 12, state[1] + 3.5, state[2]])
+        states2.append([state[0] - 15, state[1] + 3.5, state[2]])
     obj = fmtltl.ObjLTL(states2, w, h)
     vehs[1] = obj
     humans = []
 
-    xmin = 5
+    xmin = -5
     xmax = 30
-    ymin = 0
-    ymax = 7
+    ymin = 40
+    ymax = 53
     vxmin = -2.5
     vxmax = 10
     vymin = -2
     vymax = 2
     tmin = 0
     tmax = 2.5
-    w = 0.01  # ego形状
-    h = 0.01
+    w = 5  # ego形状
+    h = 2.7
     timestep = 0.2
     traffic_light = False
-
+    vehs = {}
     world = fmtltl.WorldLTL(vehs, humans, roadLtl, traffic_light, xmin, xmax, ymin, ymax, vxmin, vxmax, vymin, vymax,
                             tmin, tmax,
                             timestep, w,
                             h)
     s_init = [8, 1.7, 7, 0, 0]
+    s_init = [0.6304907442532088, 45.997003932720304, -11.788565566306517, 0.5983146673632878, 0.0]
+    s_goal = [5.630490744253208, 44.75, 2.0, 0.0, 2.5]
     nearby = world.setNearbyVehIds(s_init)
     print("front: ", nearby[0], "right: ", nearby[1], "left", nearby[2])
 
@@ -236,15 +238,18 @@ def testFmtLTL():
     # wfas.addLcRightTake()
 
     Nsample = 1500
-    exp_velo = 5
-    lc = 1
+    exp_velo = 2
+    lc = 0
     fmt = fmtltl.FMTreeLTL(s_init, exp_velo, lc, Nsample, world, wfas, False)
+    fmt.s_init == s_init
+    fmt.s_goal == s_goal
     fmt.ux_limit = 5
     fmt.uy_limit = 5
     fmt.T_limit = 5
-    fmt.r = 200
+    fmt.r = 300
 
     trace, cost = fmt.solve()
+    print("s_goal", fmt.s_goal)
 
     print("trace: ", trace)
     print("total cost: ", fmt.cost[trace[0]])

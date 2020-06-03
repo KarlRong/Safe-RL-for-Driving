@@ -16,7 +16,7 @@ from flow.core.params import NetParams
 from flow.core.params import TrafficLightParams
 from flow.core.params import InitialConfig
 from flow.core.params import EnvParams
-from rl.env.ped_movexy import MoveXYPedEnv
+from rl.env.ped_fmt import FmtPedEnv
 from flow.controllers import IDMController, RLController, StaticLaneChanger
 
 from gym.spaces.box import Box
@@ -26,9 +26,9 @@ import collections
 # create some default parameters parameters
 HORIZON = 3000
 # number of rollouts per training iteration
-N_ROLLOUTS = 11
+N_ROLLOUTS = 1
 # number of parallel workers
-N_CPUS = 11
+N_CPUS = 1
 
 env_params = EnvParams(
         horizon=HORIZON,
@@ -80,7 +80,7 @@ from flow.core.params import SumoParams
 
 sim_params = SumoParams(
         sim_step=0.2,
-        render=False,
+        render=True,
         lateral_resolution=1.0,
         restart_instance=True,
     )
@@ -164,7 +164,7 @@ class PedCrossing(Network):
 
 flow_params = dict(
     exp_tag='ped_movexy',
-    env_name=MoveXYPedEnv,
+    env_name=FmtPedEnv,
     network=PedCrossing,
     simulator='traci',
     sim=sim_params,

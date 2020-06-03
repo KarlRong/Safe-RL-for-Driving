@@ -144,7 +144,15 @@ def visualizer_rllib(args):
         config['horizon'] = args.horizon
         env_params.horizon = args.horizon
 
+    # 修正call back问题...
     # create the agent that will be used to compute the actions
+    from ray.rllib.agents.callbacks import DefaultCallbacks
+    config["callbacks"] = DefaultCallbacks
+    # 版本问题...多了一个用不了的参数
+    if "distributed_data_parallel_optimizer" in config:
+        del config["distributed_data_parallel_optimizer"]
+    if "fake_sampler" in config:
+        del config["fake_sampler"]
     agent = agent_cls(env=env_name, config=config)
     checkpoint = result_dir + '/checkpoint_' + args.checkpoint_num
     checkpoint = checkpoint + '/checkpoint-' + args.checkpoint_num

@@ -33,7 +33,7 @@ std::pair<std::vector<int>, double> FMTreeLTL::solve()
         }
         if (itr_ % 50 == 0)
         {
-            std::cout << itr_ << std::endl;
+            // std::cout << itr_ << std::endl;
         }
     }
 
@@ -180,6 +180,14 @@ int FMTreeLTL::decideFromOpen()
             min_dis = cost;
             idx_ret = idx;
         }
+    }
+    if(idx_ret == 0){
+        auto ret = cost_optimal_ltl(Pset_[idx_ret], Wfa_states_[idx_ret], Pset_[N_ - 1]);
+        min_dis = std::get<0>(ret) + std::get<1>(ret);
+    }
+    if(min_dis > 200)
+    {
+        min_dis = 200;
     }
     cost_ltl_[idx_ret] += min_dis; // open点距离终点的距离加到ltl的cost中
     return idx_ret;

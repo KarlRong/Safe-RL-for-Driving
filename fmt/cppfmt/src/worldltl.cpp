@@ -7,7 +7,7 @@
 #include <math.h>
 #include "wfaltl.h"
 #include "doublebvp.h"
-
+#include <iostream>
 
 
 std::vector<double> WorldLTL::randomSample()
@@ -192,6 +192,7 @@ std::vector<unsigned int> WorldLTL::setNearbyVehIds(const std::vector<double> &s
     frontId_ = findClosest(state, front_list);
     rightId_ = findClosest(state, right_list);
     leftId_ = findClosest(state, left_list);
+
     return std::vector<unsigned int>({frontId_, rightId_, leftId_});
 }
 
