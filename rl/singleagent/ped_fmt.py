@@ -26,9 +26,9 @@ import collections
 # create some default parameters parameters
 HORIZON = 3000
 # number of rollouts per training iteration
-N_ROLLOUTS = 1
+N_ROLLOUTS = 12
 # number of parallel workers
-N_CPUS = 1
+N_CPUS = 12
 
 env_params = EnvParams(
         horizon=HORIZON,
@@ -80,7 +80,7 @@ from flow.core.params import SumoParams
 
 sim_params = SumoParams(
         sim_step=0.2,
-        render=True,
+        render=False,
         lateral_resolution=1.0,
         restart_instance=True,
     )
