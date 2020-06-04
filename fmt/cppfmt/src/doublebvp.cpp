@@ -184,7 +184,7 @@ std::vector<std::vector<double>> gen_trajectory_bvp(const std::vector<double> &s
     double taux = u_tau_vtau_x[1], tauy = u_tau_vtau_y[1];
     double x0 = s0[0], y0 = s0[1], vx0 = s0[2], vy0 = s0[3];
     double x1 = s1[0], y1 = s1[1], vx1 = s1[2], vy1 = s1[3];
-    for (int i = 0; i < N_split + 1; ++i)
+    for (int i = 1; i < N_split + 1; ++i)
     {
         double t = i * T / N_split;
         double x, y, vx, vy;

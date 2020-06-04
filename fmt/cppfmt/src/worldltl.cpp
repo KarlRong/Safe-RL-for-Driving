@@ -45,6 +45,7 @@ bool WorldLTL::isValidState(const std::vector<double> &state)
     fcl::CollisionObjectd *egoCol = new fcl::CollisionObjectd(egoBox_, ego_tf);
     manager_->collide(egoCol, &collision_data, defaultCollisionFunction);
     collision = collision_data.result.isCollision();
+    delete egoCol;
     return !collision;
 }
 

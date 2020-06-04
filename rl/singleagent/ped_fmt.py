@@ -51,7 +51,7 @@ vehicles.add(
     }),
     # lane_change_controller=(StaticLaneChanger, {}),
     car_following_params=SumoCarFollowingParams(
-        max_speed=10,
+        max_speed=7,
         speed_mode="obey_safe_speed",
     ),
     lane_change_params=SumoLaneChangeParams(

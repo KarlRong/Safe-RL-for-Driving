@@ -38,11 +38,11 @@ std::pair<std::vector<int>, double> FMTreeLTL::solve()
     }
 
     end = clock();
-    std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
+    // std::cout << "fmt solving time: " << (double)(end - start) / CLOCKS_PER_SEC << "S" << std::endl;
     int idx = N_ - 1;
     if (!goalReached_)
     {
-        std::cout << "fmt failed to reach goal" << std::endl;
+        // std::cout << "fmt failed to reach goal" << std::endl;
         idx = decideFromOpen();
     }
     double costltl = cost_ltl_[idx];

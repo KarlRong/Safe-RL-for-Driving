@@ -33,6 +33,7 @@ from ray.rllib.policy import Policy
 from ray.rllib.policy.sample_batch import SampleBatch
 from ray.rllib.evaluation import MultiAgentEpisode, RolloutWorker
 from ray.rllib.agents.callbacks import DefaultCallbacks
+import numpy as np
 
 
 class MyCallbacks(DefaultCallbacks):
@@ -45,14 +46,45 @@ class MyCallbacks(DefaultCallbacks):
 
     # def on_episode_step(self, worker: RolloutWorker, base_env: BaseEnv,
     #                     episode: MultiAgentEpisode, **kwargs):
+    #     print("on_episode_step")
+    #     print(base_env.get_unwrapped()[0].num_collide)
     #     pole_angle = abs(episode.last_observation_for()[2])
     #     raw_angle = abs(episode.last_raw_obs_for()[2])
     #     assert pole_angle == raw_angle
         # episode.user_data["pole_angles"].append(pole_angle)
 
-    # def on_episode_end(self, worker: RolloutWorker, base_env: BaseEnv,
-    #                    policies: Dict[str, Policy], episode: MultiAgentEpisode,
-    #                    **kwargs):
+    def on_episode_end(self, worker: RolloutWorker, base_env: BaseEnv,
+                       policies: Dict[str, Policy], episode: MultiAgentEpisode,
+                       **kwargs):
+        print("on_episode_end")
+        sucess = []
+        fail = []
+        collide = []
+        outrange = []
+        redcross = []
+        custom_reward = []
+        for env in base_env.get_unwrapped():
+            sucess.append(env.num_sucess)
+            fail.append(env.num_fail)
+            collide.append(env.num_collide)
+            outrange.append(env.num_out_range)
+            redcross.append(env.num_red)
+            custom_reward.append(env.custom_reward)
+
+        sucess = np.array(sucess)
+        fail = np.array(fail)
+        collide = np.array(collide)
+        outrange = np.array(outrange)
+        redcross = np.array(redcross)
+        custom_reward = np.array(custom_reward)
+        print("sucess", sucess, "fail", fail, "collide", collide, "outrange", outrange, "redcross", redcross, "custom_reward", custom_reward)
+        episode.custom_metrics["average sucess"] = np.sum(sucess)
+        episode.custom_metrics["average fail"] = np.sum(fail)
+        episode.custom_metrics["average collide"] = np.sum(collide)
+        episode.custom_metrics["average outrange"] = np.sum(outrange)
+        episode.custom_metrics["average redcross"] = np.sum(redcross)
+        episode.custom_metrics["custom_reward"] = np.sum(custom_reward)
+        episode.custom_metrics["sucess rate"] = np.sum(sucess) / (np.sum(sucess) + np.sum(fail))
         # pole_angle = np.mean(episode.user_data["pole_angles"])
         # print("episode {} ended with length {} and pole angles {}".format(
         #     episode.episode_id, episode.length, pole_angle))

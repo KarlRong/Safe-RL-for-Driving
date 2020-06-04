@@ -25,10 +25,11 @@ import collections
 
 # create some default parameters parameters
 HORIZON = 3000
+# HORIZON = 1000
 # number of rollouts per training iteration
-N_ROLLOUTS = 11
+N_ROLLOUTS = 3
 # number of parallel workers
-N_CPUS = 11
+N_CPUS = 3
 
 env_params = EnvParams(
         horizon=HORIZON,
