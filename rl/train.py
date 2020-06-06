@@ -234,7 +234,9 @@ if __name__ == "__main__":
                 "config": {
                     **config
                 },
-                # "restore": "/home/rong/ray_results/highway_lanechange/PPO_LaneChangeAccelPOEnv-v0_f9e64d14_0_2020-02-25_01-27-48iwsfxxrq/checkpoint_197/checkpoint-197",
+                "restore": "/home/rong/ray_results/ped_movexy/PPO_MoveXYPedEnv-v0_0_2020-06-05_10-48-09j5j0og8t/checkpoint_218/checkpoint-218",
+                # "restore": "/home/rong/ray_results/ped_movexy/PPO_FmtPedEnv-v0_0_2020-06-05_10-48-04jub8zr0i/checkpoint_222/checkpoint-224",
+                # "restore": "/home/rong/ray_results/ped_movexy/PPO_FmtPedEnvNoLtlReward-v0_0_2020-06-05_10-47-50oro9df0b/checkpoint_193/checkpoint-193",
                 "checkpoint_freq": 1,
                 "checkpoint_at_end": True,
                 "max_failures": 999,

@@ -16,7 +16,7 @@ from flow.core.params import NetParams
 from flow.core.params import TrafficLightParams
 from flow.core.params import InitialConfig
 from flow.core.params import EnvParams
-from rl.env.ped_movexy import MoveXYPedEnv
+from rl.env.ped_fmt_noltlreward import FmtPedEnvNoLtlReward
 from flow.controllers import IDMController, RLController, StaticLaneChanger
 
 from gym.spaces.box import Box
@@ -25,11 +25,10 @@ import collections
 
 # create some default parameters parameters
 HORIZON = 3000
-# HORIZON = 1000
 # number of rollouts per training iteration
 N_ROLLOUTS = 12
 # number of parallel workers
-N_CPUS = 2
+N_CPUS = 6
 
 env_params = EnvParams(
         horizon=HORIZON,
@@ -52,7 +51,7 @@ vehicles.add(
     }),
     # lane_change_controller=(StaticLaneChanger, {}),
     car_following_params=SumoCarFollowingParams(
-        max_speed=10,
+        max_speed=7,
         speed_mode="obey_safe_speed",
     ),
     lane_change_params=SumoLaneChangeParams(
@@ -165,7 +164,7 @@ class PedCrossing(Network):
 
 flow_params = dict(
     exp_tag='ped_movexy',
-    env_name=MoveXYPedEnv,
+    env_name=FmtPedEnvNoLtlReward,
     network=PedCrossing,
     simulator='traci',
     sim=sim_params,

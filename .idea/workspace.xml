@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8fd7242-7ada-4900-ba38-e964784390ae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/rl/singleagent/ped_fmt_noltlreward.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fmt/cppfmt/src/fmtltl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/cppfmt/src/fmtltl.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning/python/fmt.py" beforeDir="false" afterPath="$PROJECT_DIR$/fmt/julia_motion_planning/julia_motion_planning/python/fmt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rl/singleagent/ped_fmt.py" beforeDir="false" afterPath="$PROJECT_DIR$/rl/singleagent/ped_fmt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rl/singleagent/ped_movexy.py" beforeDir="false" afterPath="$PROJECT_DIR$/rl/singleagent/ped_movexy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rl/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/rl/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,13 +63,6 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/fmt" />
-      <recent name="$PROJECT_DIR$/flow/singleagent" />
-      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
-      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/utilities" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rl/singleagent" />
       <recent name="$PROJECT_DIR$/rl/env" />
@@ -73,8 +70,15 @@
       <recent name="$PROJECT_DIR$/fmt" />
       <recent name="$PROJECT_DIR$/rl/net" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/fmt" />
+      <recent name="$PROJECT_DIR$/flow/singleagent" />
+      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs" />
+      <recent name="$PROJECT_DIR$/environments/simple-road/simple_road/envs/utilities" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.train_fmt_ped">
+  <component name="RunManager" selected="Python.train_movexy_ped">
     <configuration name="doubleintegrator" type="PythonConfigurationType" factoryName="Python" folderName="fmt" nameIsGenerated="true">
       <module name="Safe-RL-for-Driving" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -285,6 +289,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="train_fmt_ped_noltlreward" type="PythonConfigurationType" factoryName="Python" folderName="ped_ltl">
+      <module name="Safe-RL-for-Driving" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rl/train.py" />
+      <option name="PARAMETERS" value="ped_fmt_noltlreward" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="train_highway" type="PythonConfigurationType" factoryName="Python">
       <module name="Safe-RL-for-Driving" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -361,7 +386,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rl/visualizer_rllib.py" />
-      <option name="PARAMETERS" value="$PROJECT_DIR$/../ray_results/ped_movexy/PPO_FmtPedEnv-v0_0_2020-06-04_05-37-3781a67k8n 64" />
+      <option name="PARAMETERS" value="$PROJECT_DIR$/../ray_results/ped_movexy/PPO_FmtPedEnv-v0_0_2020-06-05_10-48-04jub8zr0i 215" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -399,6 +424,7 @@
       <item itemvalue="Python.simulate_xy" />
       <item itemvalue="Python.train_highway_xy" />
       <item itemvalue="Python.train_fmt_ped" />
+      <item itemvalue="Python.train_fmt_ped_noltlreward" />
       <item itemvalue="Python.sim_movexy_ped" />
       <item itemvalue="Python.train_movexy_ped" />
       <item itemvalue="Python.simulate" />
@@ -451,11 +477,11 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2202" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591246370886">
+    <state x="2202" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591449697205">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
     <state x="311" y="153" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.130.1600.875/1600.0.1920.1080@0.130.1600.875" timestamp="1590941894425" />
-    <state x="2202" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591246370886" />
+    <state x="2202" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591449697205" />
     <state x="2157" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716734800" />
     <state width="649" height="466" key="DebuggerActiveHint" timestamp="1590080192447">
       <screen x="1600" y="0" width="1920" height="1080" />
@@ -466,29 +492,29 @@
     </state>
     <state x="2343" y="285" width="424" height="480" key="FileChooserDialogImpl/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591091897624" />
     <state x="2343" y="285" width="424" height="480" key="FileChooserDialogImpl/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582644202638" />
-    <state width="1893" height="293" key="GridCell.Tab.0.bottom" timestamp="1591267267535">
+    <state width="1893" height="402" key="GridCell.Tab.0.bottom" timestamp="1591450441481">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
     <state width="1573" height="118" key="GridCell.Tab.0.bottom/0.130.1600.875/1600.0.1920.1080@0.130.1600.875" timestamp="1590941896118" />
-    <state width="1893" height="293" key="GridCell.Tab.0.bottom/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591267267535" />
+    <state width="1893" height="402" key="GridCell.Tab.0.bottom/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591450441481" />
     <state width="1893" height="310" key="GridCell.Tab.0.bottom/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
-    <state width="1893" height="293" key="GridCell.Tab.0.center" timestamp="1591267267535">
+    <state width="1893" height="402" key="GridCell.Tab.0.center" timestamp="1591450441481">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
     <state width="1573" height="118" key="GridCell.Tab.0.center/0.130.1600.875/1600.0.1920.1080@0.130.1600.875" timestamp="1590941896118" />
-    <state width="1893" height="293" key="GridCell.Tab.0.center/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591267267535" />
+    <state width="1893" height="402" key="GridCell.Tab.0.center/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591450441481" />
     <state width="1893" height="310" key="GridCell.Tab.0.center/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
-    <state width="1893" height="293" key="GridCell.Tab.0.left" timestamp="1591267267535">
+    <state width="1893" height="402" key="GridCell.Tab.0.left" timestamp="1591450441481">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
     <state width="1573" height="118" key="GridCell.Tab.0.left/0.130.1600.875/1600.0.1920.1080@0.130.1600.875" timestamp="1590941896118" />
-    <state width="1893" height="293" key="GridCell.Tab.0.left/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591267267535" />
+    <state width="1893" height="402" key="GridCell.Tab.0.left/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591450441481" />
     <state width="1893" height="310" key="GridCell.Tab.0.left/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
-    <state width="1893" height="293" key="GridCell.Tab.0.right" timestamp="1591267267535">
+    <state width="1893" height="402" key="GridCell.Tab.0.right" timestamp="1591450441481">
       <screen x="1600" y="0" width="1920" height="1080" />
     </state>
     <state width="1573" height="118" key="GridCell.Tab.0.right/0.130.1600.875/1600.0.1920.1080@0.130.1600.875" timestamp="1590941896118" />
-    <state width="1893" height="293" key="GridCell.Tab.0.right/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591267267535" />
+    <state width="1893" height="402" key="GridCell.Tab.0.right/0.130.1600.875/1600.0.1920.1080@1600.0.1920.1080" timestamp="1591450441481" />
     <state width="1893" height="310" key="GridCell.Tab.0.right/0.180.1600.900/1600.0.1920.1080@1600.0.1920.1080" timestamp="1582716736063" />
     <state width="1893" height="397" key="GridCell.Tab.1.bottom" timestamp="1591207448497">
       <screen x="1600" y="0" width="1920" height="1080" />

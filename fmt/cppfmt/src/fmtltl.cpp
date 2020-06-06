@@ -45,7 +45,7 @@ std::pair<std::vector<int>, double> FMTreeLTL::solve()
         // std::cout << "fmt failed to reach goal" << std::endl;
         idx = decideFromOpen();
     }
-    double costltl = cost_ltl_[idx];
+    double costltl = cost_ltl_[idx] + cost_speed_[idx];
     std::vector<int> idx_solution({idx});
     while (true)
     {

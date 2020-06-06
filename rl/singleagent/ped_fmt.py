@@ -28,7 +28,7 @@ HORIZON = 3000
 # number of rollouts per training iteration
 N_ROLLOUTS = 12
 # number of parallel workers
-N_CPUS = 12
+N_CPUS = 6
 
 env_params = EnvParams(
         horizon=HORIZON,
